@@ -247,7 +247,14 @@
                 document.getElementById('loadingOverlay').style.opacity = '0';
                 setTimeout(() => document.getElementById('loadingOverlay').style.display = 'none', 500);
 
-                renderLinesList();
+                const urlParams = new URLSearchParams(window.location.search);
+                const kioskStop = urlParams.get('parada');
+                
+                if (kioskStop) {
+                    initSignageMode(kioskStop);
+                } else {
+                    renderLinesList();
+                }
             } catch (err) {
                 status.innerText = "Error crítico: Verifica la URL del Script.";
                 console.error(err);
@@ -331,7 +338,7 @@
                     // Fallback si no hay KML
                     for(let i = 0; i < recorrido.ID_paradas.length; i++) {
                         dailyTimeline.push({
-                            horaMins: startMins + recorrido.Tiempos_paradas[i],
+                            horaMins: Math.round(startMins + recorrido.Tiempos_paradas[i]),
                             stopId: recorrido.ID_paradas[i], busId: salida.Turno_ID, salidaId: salida.ID_salida,
                             lineId: recorrido.ID_linea, recorridoId: recorrido.ID_recorrido, sentido: recorrido.Sentido, nombreRecorrido: recorrido.Nombre_recorrido
                         });
@@ -373,7 +380,7 @@
                     }
                     
                     dailyTimeline.push({
-                        horaMins: startMins + calculatedOffset,
+                        horaMins: Math.round(startMins + calculatedOffset),
                         stopId: kmlStop.id,
                         busId: salida.Turno_ID,
                         salidaId: salida.ID_salida,
@@ -579,18 +586,102 @@
                 let minsLeft = arrival.horaMins - nowMins;
                 let badgeClass = minsLeft <= 10 ? "bg-red-100 text-red-700 border-red-200" : "bg-blue-100 text-blue-700 border-blue-200";
                 
+                let timeText = minsLeft <= 0 ? '< 1 min' : (minsLeft + ' min');
+                
                 list.innerHTML += `
                     <li class="flex justify-between items-center bg-gray-50 p-3 rounded-xl border border-gray-100">
                         <div class="flex flex-col">
-                            <span class="text-xs text-gray-500 font-semibold mb-0.5">Servicio ${arrival.busId}</span>
+                            <span class="text-xs text-gray-500 font-semibold mb-0.5">Coche ${arrival.busId}</span>
                             <span class="text-sm font-bold text-gray-800">${minsToTime(arrival.horaMins)} hs</span>
                         </div>
                         <div class="px-3 py-1 rounded-full border ${badgeClass} text-xs font-bold shadow-sm">
-                            ${minsLeft === 0 ? 'En parada' : minsLeft + ' min'}
+                            ${timeText}
                         </div>
                     </li>
                 `;
             });
+        }
+
+        // --- MODO KIOSCO (CARTEL DIGITAL) ---
+        function initSignageMode(stopId) {
+            // Ocultar UI de la app normal
+            document.getElementById('sidebar').style.display = 'none';
+            document.getElementById('map').style.display = 'none';
+            document.getElementById('bottomSheet').style.display = 'none';
+            const menuBtn = document.querySelector('button[onclick="toggleSidebar()"]');
+            if(menuBtn) menuBtn.style.display = 'none';
+            
+            const kioskDiv = document.createElement('div');
+            kioskDiv.className = 'fixed inset-0 bg-gray-900 text-white z-[9000] p-6 flex flex-col';
+            kioskDiv.innerHTML = `
+                <div class="flex justify-between items-center border-b border-gray-700 pb-4 mb-6">
+                    <div>
+                        <h1 class="text-4xl font-bold text-blue-400">Próximas Llegadas</h1>
+                        <h2 class="text-2xl text-gray-400 mt-2">Parada: ${stopId}</h2>
+                    </div>
+                    <div class="text-right">
+                        <div class="text-5xl font-bold" id="kioskClock">--:--</div>
+                        <div class="text-gray-400 mt-2 text-lg">Actualizado en vivo</div>
+                    </div>
+                </div>
+                <div class="flex-1 overflow-hidden relative">
+                    <ul id="kioskList" class="space-y-4"></ul>
+                </div>
+            `;
+            document.body.appendChild(kioskDiv);
+            
+            function tickClock() {
+                const d = new Date();
+                document.getElementById('kioskClock').innerText = d.getHours().toString().padStart(2,'0') + ':' + d.getMinutes().toString().padStart(2,'0');
+            }
+            tickClock();
+            setInterval(tickClock, 1000);
+            
+            function updateKiosk() {
+                const list = document.getElementById('kioskList');
+                list.innerHTML = '';
+                const nowMins = getMinsNow();
+                
+                const upcoming = dailyTimeline.filter(t => t.stopId === stopId && t.horaMins >= nowMins)
+                                              .sort((a,b) => a.horaMins - b.horaMins)
+                                              .slice(0, 8);
+                
+                if(upcoming.length === 0) {
+                    list.innerHTML = '<li class="text-2xl text-gray-500 italic text-center mt-10">No hay más servicios programados para hoy.</li>';
+                    return;
+                }
+                
+                upcoming.forEach(arr => {
+                    const linea = masterData.lineas.find(l => l.ID_linea === arr.lineId);
+                    const color = linea ? linea.Color_linea : '#3b82f6';
+                    const textColor = linea ? linea.Color_texto : '#fff';
+                    const shortName = linea ? (linea.Linea_nombre_corto || linea.ID_linea.replace('L','')) : arr.lineId;
+                    
+                    let minsLeft = arr.horaMins - nowMins;
+                    let timeText = minsLeft <= 0 ? '< 1 min' : (minsLeft + ' min');
+                    let timeColor = minsLeft <= 5 ? 'text-red-400 animate-pulse' : 'text-blue-300';
+                    
+                    list.innerHTML += `
+                        <li class="flex justify-between items-center bg-gray-800 p-5 rounded-2xl border border-gray-700 shadow-lg">
+                            <div class="flex items-center gap-5">
+                                <div class="w-16 h-16 rounded-2xl flex items-center justify-center font-bold text-3xl shadow-inner" style="background-color: ${color}; color: ${textColor}">
+                                    ${shortName}
+                                </div>
+                                <div class="flex flex-col">
+                                    <span class="text-2xl font-bold text-gray-100">${arr.nombreRecorrido}</span>
+                                    <span class="text-lg text-gray-400">Coche ${arr.busId} • ${minsToTime(arr.horaMins)} hs</span>
+                                </div>
+                            </div>
+                            <div class="text-4xl font-bold ${timeColor}">
+                                ${timeText}
+                            </div>
+                        </li>
+                    `;
+                });
+            }
+            
+            updateKiosk();
+            setInterval(updateKiosk, 15000);
         }
 
         function openScheduleModal() {
