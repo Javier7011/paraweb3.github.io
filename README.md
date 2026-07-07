@@ -1,2 +1,698 @@
-# paraweb3.github.io
-repositorio de la web de paragracia
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Transporte Público - Alta Gracia</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Turf.js para interpolación espacial -->
+    <script src="https://cdn.jsdelivr.net/npm/@turf/turf@6/turf.min.js"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; -webkit-tap-highlight-color: transparent; }
+        #map { height: 100vh; width: 100%; z-index: 1; }
+        .sidebar { z-index: 2500; transition: transform 0.3s ease-in-out; }
+        @media (max-width: 768px) { .sidebar { transform: translateX(-100%); } .sidebar.open { transform: translateX(0); } }
+        
+        .bottom-sheet { transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); will-change: transform; }
+        .bottom-sheet.closed { transform: translateY(100%); }
+        .bottom-sheet.peek { transform: translateY(calc(100% - 100px)); }
+        .bottom-sheet.open { transform: translateY(0); }
+        @media (min-width: 768px) {
+            .bottom-sheet.peek { transform: translateY(calc(100% - 110px)) translateX(-50%); }
+            .bottom-sheet.closed { transform: translateY(100%) translateX(-50%); }
+            .bottom-sheet.open { transform: translateY(0) translateX(-50%); }
+        }
+        
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .glass { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+        .bus-icon { transition: all 1s linear; }
+    </style>
+</head>
+<body class="bg-gray-100 overflow-hidden">
+    <!-- Overlay Carga -->
+    <div id="loadingOverlay" class="fixed inset-0 bg-white z-[9999] flex flex-col items-center justify-center transition-opacity duration-500">
+        <div class="w-16 h-16 border-4 border-blue-200 border-t-blue-600 rounded-full animate-spin mb-4"></div>
+        <h2 class="text-xl font-bold text-gray-800">Paragracia v3.0</h2>
+        <p id="loadingStatus" class="text-sm text-gray-500 mt-2 font-medium">Iniciando sistema...</p>
+    </div>
+
+    <div class="h-screen w-full flex relative">
+        <!-- Botón Menú Móvil -->
+        <button onclick="toggleSidebar()" class="md:hidden fixed top-4 left-4 z-[2000] bg-white p-3 rounded-xl shadow-lg border border-gray-100 text-gray-700 hover:bg-gray-50">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg>
+        </button>
+
+        <!-- Sidebar Líneas -->
+        <aside id="sidebar" class="sidebar absolute md:relative w-80 h-full bg-white/95 backdrop-blur-md border-r border-gray-200/50 shadow-2xl md:shadow-none flex flex-col">
+            <div class="p-5 md:p-6 bg-gradient-to-br from-blue-600 to-blue-800 text-white flex justify-between items-center">
+                <div>
+                    <h1 class="text-xl font-bold tracking-tight">Paragracia</h1>
+                    <p class="text-blue-200 text-xs font-medium uppercase tracking-wider mt-1">Líneas de Colectivos</p>
+                </div>
+                <button id="closeSidebarBtn" class="md:hidden p-1.5 hover:bg-white/20 rounded-lg transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+                </button>
+            </div>
+            
+            <div class="flex-1 overflow-y-auto p-4 space-y-2 no-scrollbar">
+                <p class="text-[11px] font-bold text-gray-400 uppercase tracking-widest mb-3 px-1">Líneas Disponibles</p>
+                <div id="lineList" class="space-y-1"></div>
+            </div>
+
+            <div class="p-4 bg-gray-50/80 border-t border-gray-200/50 backdrop-blur-sm">
+                <button onclick="forceRefreshData()" class="w-full flex items-center justify-center space-x-2 text-sm text-blue-700 font-semibold bg-blue-50 hover:bg-blue-100 py-2.5 rounded-xl transition-colors border border-blue-100 shadow-sm">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" /></svg>
+                    <span>Actualizar Datos</span>
+                </button>
+                <p id="lastUpdateText" class="text-[10px] text-center text-gray-400 mt-2 font-medium">Última act: --:--</p>
+            </div>
+        </aside>
+
+        <!-- Área de Mapa -->
+        <main class="flex-1 relative w-full h-full">
+            <div id="map" class="w-full h-full"></div>
+            
+            <!-- BottomSheet Unificado -->
+            <div id="bottomSheet" class="bottom-sheet absolute bottom-0 left-0 w-full md:left-1/2 md:-translate-x-1/2 z-[1000] glass rounded-t-3xl shadow-[0_-10px_40px_rgba(0,0,0,0.1)] border-t border-white md:border md:w-11/12 md:max-w-md md:bottom-4 md:rounded-3xl flex flex-col max-h-[85vh] closed">
+                <div class="w-full pt-3 pb-1 flex justify-center touch-pan-y cursor-pointer" onclick="toggleBottomSheet()">
+                    <div class="w-12 h-1.5 bg-gray-300 rounded-full"></div>
+                </div>
+                
+                <div class="px-5 pb-6 overflow-y-auto no-scrollbar flex-1">
+                    <!-- Cabecera -->
+                    <div class="flex justify-between items-start mb-3">
+                        <div class="flex-1 pr-4">
+                            <h2 id="sheetTitle" class="text-xl font-bold text-gray-800 leading-tight">Selecciona una línea</h2>
+                            <p id="sheetSubtitle" class="text-sm text-gray-500 mt-0.5">Toca una parada para ver horarios</p>
+                        </div>
+                        <button onclick="closeBottomSheet()" class="bg-gray-100 hover:bg-gray-200 text-gray-500 p-2 rounded-full transition-colors flex-shrink-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" /></svg>
+                        </button>
+                    </div>
+
+                    <!-- Botones de recorrido agrupados -->
+                    <div id="tripButtonsContainer" class="mt-4 flex flex-col gap-3 hidden">
+                        <!-- TABS -->
+                        <div class="flex bg-gray-100 p-1 rounded-lg">
+                            <button id="tabIda" onclick="switchTab(0)" class="flex-1 py-1.5 text-sm font-semibold rounded-md bg-white shadow-sm text-blue-700 transition-colors">IDA</button>
+                            <button id="tabVuelta" onclick="switchTab(1)" class="flex-1 py-1.5 text-sm font-semibold rounded-md text-gray-500 hover:text-gray-700 transition-colors">VUELTA</button>
+                        </div>
+                        <div id="recorridosIda" class="flex flex-col gap-1.5"></div>
+                        <div id="recorridosVuelta" class="hidden flex flex-col gap-1.5"></div>
+                    </div>
+
+                    <!-- Contenedor Colapsable Paradas -->
+                    <div id="collapsibleContent">
+                        <div id="stopContent" class="hidden mt-2">
+                            <button onclick="backToTrips()" class="mb-3 text-sm text-blue-600 font-semibold flex items-center gap-1 hover:text-blue-800 transition-colors w-fit">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
+                                Volver a recorridos
+                            </button>
+                            <div class="bg-white/80 rounded-2xl p-4 shadow-sm border border-gray-100 backdrop-blur-sm">
+                                <h3 class="text-[11px] font-bold text-gray-400 uppercase tracking-wider mb-3">Próximos arribos</h3>
+                                <ul id="stopArrivalsList" class="space-y-3"></ul>
+                                
+                                <button onclick="openScheduleModal()" class="mt-4 w-full bg-blue-50 text-blue-700 hover:bg-blue-100 font-semibold py-2.5 px-4 rounded-xl transition-colors border border-blue-100 flex justify-center items-center gap-2 shadow-sm text-sm">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                                    Ver todas las pasadas
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- MODAL: HORARIO COMPLETO DE PARADA -->
+    <div id="scheduleModal" class="fixed inset-0 z-[4000] hidden flex items-end md:items-center justify-center">
+        <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm transition-opacity" onclick="closeScheduleModal()"></div>
+        <div class="relative bg-white w-full md:w-11/12 md:max-w-md rounded-t-3xl md:rounded-3xl shadow-2xl flex flex-col max-h-[90vh] md:translate-y-0" id="scheduleModalContent">
+            <div class="p-5 md:p-6 border-b border-gray-100 flex justify-between items-center bg-gray-50/50 rounded-t-3xl md:rounded-t-3xl backdrop-blur-md">
+                <div>
+                    <h2 class="text-xl font-bold text-gray-800" id="modalTitle">Todas las Llegadas</h2>
+                    <p class="text-sm text-gray-500" id="modalSubtitle">Línea seleccionada</p>
+                </div>
+                <button onclick="closeScheduleModal()" class="bg-white hover:bg-gray-100 text-gray-500 p-2 rounded-full shadow-sm transition-colors border border-gray-200">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+                </button>
+            </div>
+            <div class="p-5 overflow-y-auto flex-1 no-scrollbar bg-white rounded-b-3xl">
+                <ul id="fullArrivalsList" class="space-y-2">
+                    <!-- Dinámico -->
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        // --- CONFIGURACIÓN DE APIS ---
+        // URL DE LA INFORMACION PROCESADA (BACKEND)
+        const APPS_SCRIPT_DATA_URL = "https://script.google.com/macros/s/AKfycbxxM2JFcNZkPUhJ-VPnTbloWTSKiznpeoPuZS6CAbHCam8pXxsKfjw6U9ZXSOywvFVD/exec"; 
+        const APPS_SCRIPT_KML_URL = "https://script.google.com/macros/s/AKfycbzaBFcsUxpfPcdECwAVPyek7nGgYZo194fD5Q_VsmnfvRhhyyZhMxNzw_C9KZIQce3umA/exec"; 
+        
+        // --- VARIABLES GLOBALES ---
+        let masterData = { lineas: [], recorridos: [], salidas: [] };
+        let kmlData = { lines: new Map() };
+        
+        let dailyTimeline = []; 
+        
+        let activeLineId = null;
+        let activeRecorridoId = null;
+        let activeStopId = null;
+        
+        let isSheetExpanded = false;
+        
+        let busMarkersLayer = L.layerGroup();
+        let currentRouteLayer = L.layerGroup();
+        let currentStopsLayer = L.layerGroup();
+
+        const map = L.map('map', { zoomControl: false }).setView([-31.6585, -64.4285], 14);
+        L.control.zoom({ position: 'topright' }).addTo(map);
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', { 
+            attribution: '© OpenStreetMap contributors',
+            subdomains: 'abcd',
+            maxZoom: 20
+        }).addTo(map);
+
+        currentRouteLayer.addTo(map);
+        currentStopsLayer.addTo(map);
+        busMarkersLayer.addTo(map);
+
+        window.onload = () => {
+            if (window.innerWidth < 768) {
+                toggleSidebar(true);
+            }
+            loadAllData(false);
+            setInterval(updateBusesPosition, 10000);
+        };
+
+        async function fetchWithCache(url, cacheKey, expiryMs, force = false) {
+            if (!force) {
+                const cachedData = localStorage.getItem(cacheKey);
+                if (cachedData) {
+                    const parsed = JSON.parse(cachedData);
+                    if (new Date().getTime() - parsed.timestamp < expiryMs) {
+                        return parsed.data;
+                    }
+                }
+            }
+            const res = await fetch(url + (force ? "?refresh=true" : ""));
+            let data = url === APPS_SCRIPT_KML_URL ? await res.text() : await res.json();
+            localStorage.setItem(cacheKey, JSON.stringify({ timestamp: new Date().getTime(), data: data }));
+            updateLastUpdateText();
+            return data;
+        }
+
+        function updateLastUpdateText() {
+            const tText = document.getElementById('lastUpdateText');
+            if(!tText) return;
+            const now = new Date();
+            tText.innerText = `Última act: ${now.getHours().toString().padStart(2,'0')}:${now.getMinutes().toString().padStart(2,'0')}`;
+        }
+
+        async function forceRefreshData() {
+            const status = document.getElementById('loadingStatus');
+            document.getElementById('loadingOverlay').style.display = 'flex';
+            document.getElementById('loadingOverlay').style.opacity = '1';
+            status.innerText = "Actualizando información en vivo...";
+            await loadAllData(true);
+        }
+
+        async function loadAllData(force = false) {
+            const status = document.getElementById('loadingStatus');
+            try {
+                status.innerText = "Descargando horarios...";
+                masterData = await fetchWithCache(APPS_SCRIPT_DATA_URL, 'paragracia_v3_data', 3600000, force);
+                
+                status.innerText = "Cargando recorridos...";
+                const kmlText = await fetchWithCache(APPS_SCRIPT_KML_URL, 'paragracia_v3_kml', 86400000, force);
+                parseKMLData(kmlText);
+                
+                status.innerText = "Calculando llegadas...";
+                generateDailyTimeline();
+
+                document.getElementById('loadingOverlay').style.opacity = '0';
+                setTimeout(() => document.getElementById('loadingOverlay').style.display = 'none', 500);
+
+                renderLinesList();
+            } catch (err) {
+                status.innerText = "Error crítico: Verifica la URL del Script.";
+                console.error(err);
+                setTimeout(() => document.getElementById('loadingOverlay').style.display = 'none', 3000);
+            }
+        }
+
+        function parseKMLData(kmlText) {
+            const parser = new DOMParser();
+            const xmlDoc = parser.parseFromString(kmlText, "text/xml");
+            kmlData.lines.clear();
+            const placemarks = xmlDoc.querySelectorAll("Placemark");
+            
+            placemarks.forEach(pm => {
+                const lineString = pm.querySelector("LineString coordinates");
+                if (lineString) {
+                    const name = pm.querySelector("name")?.textContent || "Sin Nombre";
+                    const coords = parseKMLCoordinates(lineString.textContent);
+                    const geojsonLine = turf.lineString(coords.map(c => [c[1], c[0]]));
+                    
+                    kmlData.lines.set(name, { id: name, coords: coords, geojson: geojsonLine, stops: [] });
+                }
+            });
+
+            placemarks.forEach(pm => {
+                const point = pm.querySelector("Point coordinates");
+                if (point) {
+                    const kmlName = pm.querySelector("name")?.textContent.trim();
+                    const stopId = getExtData(pm, "ID_parada") || kmlName;
+                    const stopName = getExtData(pm, "Nombre_parada") || kmlName;
+                    const recorridosAsociados = getExtData(pm, "ID_recorrido") || "";
+                    
+                    const coords = parseKMLCoordinates(point.textContent)[0];
+                    
+                    kmlData.lines.forEach((lineData, lineName) => {
+                        // Filtramos estrictamente por el campo ID_recorrido del KML
+                        if (recorridosAsociados.includes(lineName)) { 
+                            const pt = turf.point([coords[1], coords[0]]);
+                            // Usamos Turf para calcular en qué kilómetro de la línea cae la parada (para interpolar el tiempo)
+                            const snapped = turf.nearestPointOnLine(lineData.geojson, pt);
+                            lineData.stops.push({ id: stopId, name: stopName, coords: coords, distanceFromStart: snapped.properties.location });
+                        }
+                    });
+                }
+            });
+            
+            kmlData.lines.forEach(line => {
+                line.stops.sort((a, b) => a.distanceFromStart - b.distanceFromStart);
+            });
+        }
+
+        function getExtData(placemark, name) {
+            const dataNodes = placemark.querySelectorAll(`Data[name="${name}"] value, SimpleData[name="${name}"]`);
+            return dataNodes.length > 0 ? dataNodes[0].textContent.trim() : null;
+        }
+
+        function parseKMLCoordinates(coordStr) {
+            return coordStr.trim().split(/\s+/).map(pair => {
+                const [lon, lat] = pair.split(',').map(Number);
+                return [lat, lon];
+            });
+        }
+
+        function generateDailyTimeline() {
+            dailyTimeline = [];
+            const hoy = new Date();
+            let dayOfWeek = hoy.getDay();
+            if (dayOfWeek === 0) dayOfWeek = 7; 
+            
+            masterData.salidas.forEach(salida => {
+                if (!salida.Salida_activa) return;
+                if (!salida.Dias_operativo.includes(dayOfWeek)) return;
+                
+                const recorrido = masterData.recorridos.find(r => r.ID_recorrido === salida.ID_recorrido);
+                if (!recorrido) return;
+                
+                const startMins = timeToMins(salida.Hora_salida);
+                
+                const kmlLine = kmlData.lines.get(recorrido.ID_recorrido);
+                if (!kmlLine || kmlLine.stops.length === 0) {
+                    // Fallback si no hay KML
+                    for(let i = 0; i < recorrido.ID_paradas.length; i++) {
+                        dailyTimeline.push({
+                            horaMins: startMins + recorrido.Tiempos_paradas[i],
+                            stopId: recorrido.ID_paradas[i], busId: salida.Turno_ID, salidaId: salida.ID_salida,
+                            lineId: recorrido.ID_linea, recorridoId: recorrido.ID_recorrido, sentido: recorrido.Sentido, nombreRecorrido: recorrido.Nombre_recorrido
+                        });
+                    }
+                    return;
+                }
+                
+                // Diccionario rápido de paradas de control
+                const controlStops = {};
+                for(let i = 0; i < recorrido.ID_paradas.length; i++) {
+                    controlStops[recorrido.ID_paradas[i].trim()] = recorrido.Tiempos_paradas[i];
+                }
+                
+                // Anclajes temporales
+                const anchors = [];
+                kmlLine.stops.forEach(kmlStop => {
+                    const offset = controlStops[kmlStop.id];
+                    if (offset !== undefined) anchors.push({ distance: kmlStop.distanceFromStart, offset: offset });
+                });
+                anchors.sort((a,b) => a.distance - b.distance);
+                
+                // Interpolar tiempos para todas las paradas (incluso las intermedias)
+                kmlLine.stops.forEach(kmlStop => {
+                    let calculatedOffset = 0;
+                    
+                    const directOffset = controlStops[kmlStop.id];
+                    if (directOffset !== undefined) {
+                        calculatedOffset = directOffset;
+                    } else if (anchors.length > 0) {
+                        const prevAnchor = [...anchors].reverse().find(a => a.distance <= kmlStop.distanceFromStart);
+                        const nextAnchor = anchors.find(a => a.distance >= kmlStop.distanceFromStart);
+                        
+                        if (prevAnchor && nextAnchor && prevAnchor !== nextAnchor) {
+                            const distFraction = (kmlStop.distanceFromStart - prevAnchor.distance) / (nextAnchor.distance - prevAnchor.distance);
+                            const timeDiff = nextAnchor.offset - prevAnchor.offset;
+                            calculatedOffset = prevAnchor.offset + (distFraction * timeDiff);
+                        } else if (prevAnchor) calculatedOffset = prevAnchor.offset;
+                        else if (nextAnchor) calculatedOffset = nextAnchor.offset;
+                    }
+                    
+                    dailyTimeline.push({
+                        horaMins: startMins + calculatedOffset,
+                        stopId: kmlStop.id,
+                        busId: salida.Turno_ID,
+                        salidaId: salida.ID_salida,
+                        lineId: recorrido.ID_linea,
+                        recorridoId: recorrido.ID_recorrido,
+                        sentido: recorrido.Sentido,
+                        nombreRecorrido: recorrido.Nombre_recorrido
+                    });
+                });
+            });
+            dailyTimeline.sort((a, b) => a.horaMins - b.horaMins);
+        }
+
+        function timeToMins(timeStr) {
+            if (!timeStr) return 0;
+            const parts = timeStr.toString().split(':');
+            return parseInt(parts[0], 10) * 60 + parseInt(parts[1], 10);
+        }
+
+        function minsToTime(mins) {
+            let totalMins = Math.round(mins);
+            let h = Math.floor(totalMins / 60) % 24;
+            let m = totalMins % 60;
+            return `${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}`;
+        }
+
+        function getMinsNow() {
+            const now = new Date();
+            return now.getHours() * 60 + now.getMinutes();
+        }
+
+        function renderLinesList() {
+            const container = document.getElementById('lineList');
+            container.innerHTML = '';
+            
+            masterData.lineas.forEach(linea => {
+                const btn = document.createElement('button');
+                btn.className = `w-full text-left px-4 py-3 rounded-xl mb-1.5 transition-all flex items-center shadow-sm border border-transparent hover:border-gray-200 bg-white hover:bg-gray-50 group`;
+                btn.onclick = () => selectLine(linea.ID_linea);
+                
+                const shortName = linea.Linea_nombre_corto || linea.ID_linea.replace('L','');
+                
+                btn.innerHTML = `
+                    <div class="w-11 h-11 rounded-xl flex items-center justify-center mr-3 shadow-inner font-bold text-lg" style="background-color: ${linea.Color_linea}; color: ${linea.Color_texto || '#fff'}">
+                        ${shortName}
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="font-bold text-gray-800 text-sm group-hover:text-blue-700 transition-colors">${linea.Nombre_linea}</h3>
+                        <p class="text-[11px] text-gray-500 font-medium">${linea.Nombre_Empresa || linea.Tipo_linea}</p>
+                    </div>
+                `;
+                container.appendChild(btn);
+            });
+        }
+
+        function switchTab(sentido) {
+            const tIda = document.getElementById('tabIda');
+            const tVuelta = document.getElementById('tabVuelta');
+            const rIda = document.getElementById('recorridosIda');
+            const rVuelta = document.getElementById('recorridosVuelta');
+            
+            const activeClass = "flex-1 py-1.5 text-sm font-semibold rounded-md bg-white shadow-sm text-blue-700 transition-colors";
+            const inactiveClass = "flex-1 py-1.5 text-sm font-semibold rounded-md text-gray-500 hover:text-gray-700 transition-colors bg-transparent";
+            
+            if (sentido === 0) {
+                tIda.className = activeClass;
+                tVuelta.className = inactiveClass;
+                rIda.classList.remove('hidden');
+                rVuelta.classList.add('hidden');
+            } else {
+                tVuelta.className = activeClass;
+                tIda.className = inactiveClass;
+                rVuelta.classList.remove('hidden');
+                rIda.classList.add('hidden');
+            }
+            setBottomSheetState('open');
+        }
+
+        function selectLine(lineId) {
+            activeLineId = lineId;
+            activeStopId = null;
+            activeRecorridoId = null;
+            toggleSidebar(false);
+            
+            const linea = masterData.lineas.find(l => l.ID_linea === lineId);
+            document.getElementById('sheetTitle').innerText = linea.Nombre_linea;
+            document.getElementById('sheetSubtitle').innerText = "Selecciona el sentido de viaje";
+            
+            currentRouteLayer.clearLayers();
+            currentStopsLayer.clearLayers();
+            
+            const recorridosDeLinea = masterData.recorridos.filter(r => r.ID_linea === lineId && r.Mostrar_en_selector)
+                                        .sort((a, b) => a.Posicion_selector - b.Posicion_selector);
+            
+            const idaContainer = document.getElementById('recorridosIda');
+            const vueltaContainer = document.getElementById('recorridosVuelta');
+            idaContainer.innerHTML = '';
+            vueltaContainer.innerHTML = '';
+            
+            let tieneIda = false, tieneVuelta = false;
+
+            recorridosDeLinea.forEach(r => {
+                const btn = document.createElement('button');
+                btn.className = "w-full text-left bg-white border border-gray-200 p-3 rounded-lg shadow-sm font-semibold text-gray-700 text-sm hover:border-blue-400 hover:text-blue-700 transition-colors";
+                btn.innerText = r.Nombre_recorrido;
+                btn.onclick = () => selectRecorrido(r.ID_recorrido);
+                
+                if (r.Sentido === 0 || r.Sentido === "0") {
+                    idaContainer.appendChild(btn);
+                    tieneIda = true;
+                } else {
+                    vueltaContainer.appendChild(btn);
+                    tieneVuelta = true;
+                }
+            });
+
+            document.getElementById('tripButtonsContainer').classList.remove('hidden');
+            document.getElementById('stopContent').classList.add('hidden');
+            
+            // Switch to Ida initially if exists
+            if (tieneIda) switchTab(0);
+            else if (tieneVuelta) switchTab(1);
+            
+            setBottomSheetState('open');
+        }
+
+        function selectRecorrido(recorridoId) {
+            activeRecorridoId = recorridoId;
+            activeStopId = null;
+            
+            currentRouteLayer.clearLayers();
+            currentStopsLayer.clearLayers();
+            
+            const kmlLine = kmlData.lines.get(recorridoId);
+            const linea = masterData.lineas.find(l => l.ID_linea === activeLineId);
+            const color = linea ? linea.Color_linea : "#2563eb";
+
+            if (kmlLine) {
+                L.polyline(kmlLine.coords, { color: color, weight: 5, opacity: 0.8 }).addTo(currentRouteLayer);
+                map.fitBounds(L.polyline(kmlLine.coords).getBounds(), { padding: [50, 50] });
+                
+                kmlLine.stops.forEach(stop => {
+                    const marker = L.circleMarker(stop.coords, {
+                        radius: 5, fillColor: 'white', color: color, weight: 2, fillOpacity: 1
+                    }).addTo(currentStopsLayer);
+                    
+                    marker.on('click', () => selectStop(stop.id, stop.name, stop.coords));
+                });
+            }
+            
+            document.getElementById('sheetSubtitle').innerText = "Toca una parada en el mapa para ver los horarios";
+            setBottomSheetState('peek');
+            updateBusesPosition(); 
+        }
+
+        function selectStop(stopId, stopName, coords) {
+            activeStopId = stopId;
+            if (coords) map.setView(coords, 16);
+            
+            document.getElementById('sheetTitle').innerText = stopName || stopId; 
+            document.getElementById('sheetSubtitle').innerText = "Parada seleccionada";
+            
+            document.getElementById('tripButtonsContainer').classList.add('hidden');
+            document.getElementById('stopContent').classList.remove('hidden');
+            
+            renderStopArrivals();
+            setBottomSheetState('open');
+        }
+        
+        function backToTrips() {
+            activeStopId = null;
+            document.getElementById('stopContent').classList.add('hidden');
+            document.getElementById('tripButtonsContainer').classList.remove('hidden');
+            const linea = masterData.lineas.find(l => l.ID_linea === activeLineId);
+            document.getElementById('sheetTitle').innerText = linea.Nombre_linea;
+            document.getElementById('sheetSubtitle').innerText = "Selecciona el sentido de viaje";
+            setBottomSheetState('open');
+        }
+
+        function renderStopArrivals() {
+            const list = document.getElementById('stopArrivalsList');
+            list.innerHTML = '';
+            
+            const nowMins = getMinsNow();
+            
+            // Buscar el sentido actual para filtrar
+            const currRec = masterData.recorridos.find(r => r.ID_recorrido === activeRecorridoId);
+            const activeSentido = currRec ? currRec.Sentido : 0;
+            
+            let upcoming = dailyTimeline.filter(t => 
+                t.stopId === activeStopId && 
+                t.lineId === activeLineId && 
+                t.sentido === activeSentido &&
+                t.horaMins >= nowMins
+            ).slice(0, 2); 
+            
+            if (upcoming.length === 0) {
+                list.innerHTML = '<li class="text-sm text-gray-500 italic">No hay más servicios por hoy.</li>';
+                return;
+            }
+            
+            upcoming.forEach(arrival => {
+                let minsLeft = arrival.horaMins - nowMins;
+                let badgeClass = minsLeft <= 10 ? "bg-red-100 text-red-700 border-red-200" : "bg-blue-100 text-blue-700 border-blue-200";
+                
+                list.innerHTML += `
+                    <li class="flex justify-between items-center bg-gray-50 p-3 rounded-xl border border-gray-100">
+                        <div class="flex flex-col">
+                            <span class="text-xs text-gray-500 font-semibold mb-0.5">Servicio ${arrival.busId}</span>
+                            <span class="text-sm font-bold text-gray-800">${minsToTime(arrival.horaMins)} hs</span>
+                        </div>
+                        <div class="px-3 py-1 rounded-full border ${badgeClass} text-xs font-bold shadow-sm">
+                            ${minsLeft === 0 ? 'En parada' : minsLeft + ' min'}
+                        </div>
+                    </li>
+                `;
+            });
+        }
+
+        function openScheduleModal() {
+            const list = document.getElementById('fullArrivalsList');
+            list.innerHTML = '';
+            
+            const nowMins = getMinsNow();
+            
+            const currRec = masterData.recorridos.find(r => r.ID_recorrido === activeRecorridoId);
+            const activeSentido = currRec ? currRec.Sentido : 0;
+            
+            const allPasses = dailyTimeline.filter(t => 
+                t.stopId === activeStopId && 
+                t.lineId === activeLineId &&
+                t.sentido === activeSentido
+            );
+            
+            allPasses.forEach(arrival => {
+                const isPast = arrival.horaMins < nowMins;
+                const isNext = (arrival.horaMins >= nowMins) && (arrival === allPasses.find(a => a.horaMins >= nowMins));
+                
+                let textClass = isPast ? "text-gray-400" : (isNext ? "text-blue-700 font-extrabold" : "text-gray-700 font-bold");
+                let bgClass = isNext ? "bg-blue-50 border-blue-200" : "bg-white border-gray-100";
+                
+                list.innerHTML += `
+                    <li class="flex justify-between items-center p-3 rounded-lg border ${bgClass}">
+                        <div class="flex items-center gap-3">
+                            <span class="${textClass} text-lg">${minsToTime(arrival.horaMins)}</span>
+                            <span class="text-xs text-gray-500 uppercase font-semibold">${arrival.nombreRecorrido}</span>
+                        </div>
+                        <span class="text-xs text-gray-400 uppercase tracking-widest">Servicio ${arrival.busId}</span>
+                    </li>
+                `;
+            });
+            
+            document.getElementById('scheduleModal').classList.remove('hidden');
+        }
+
+        function closeScheduleModal() {
+            document.getElementById('scheduleModal').classList.add('hidden');
+        }
+
+        function updateBusesPosition() {
+            if (!activeRecorridoId) return;
+            
+            busMarkersLayer.clearLayers();
+            const kmlLine = kmlData.lines.get(activeRecorridoId);
+            if (!kmlLine) return;
+            
+            const nowMins = getMinsNow();
+            
+            const salidasHoy = [...new Set(dailyTimeline.filter(t => t.recorridoId === activeRecorridoId).map(t => t.salidaId))];
+            
+            salidasHoy.forEach(salidaId => {
+                const stops = dailyTimeline.filter(t => t.salidaId === salidaId);
+                if(stops.length < 2) return;
+                
+                const startTime = stops[0].horaMins;
+                const endTime = stops[stops.length-1].horaMins;
+                
+                if (nowMins >= startTime && nowMins <= endTime) {
+                    const lineLength = turf.length(kmlLine.geojson, {units: 'kilometers'});
+                    const totalDuracion = endTime - startTime;
+                    const minsRecorridos = nowMins - startTime;
+                    const globalPercentage = totalDuracion > 0 ? (minsRecorridos / totalDuracion) : 0;
+                    
+                    const currentPos = turf.along(kmlLine.geojson, lineLength * globalPercentage, {units: 'kilometers'});
+                    
+                    const busIcon = L.divIcon({
+                        className: 'bus-icon',
+                        html: `<div class="bg-blue-600 text-white w-8 h-8 rounded-full border-2 border-white shadow-lg flex items-center justify-center">
+                            <svg viewBox="0 0 16 16" width="16" height="16" fill="white"><path d="M16 7a1 1 0 0 1-1 1v3.5c0 .818-.393 1.544-1 2v2a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5V14H5v1.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-2a2.5 2.5 0 0 1-1-2V8a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1V2.64C1 1.452 1.845.408 3.064.268A44 44 0 0 1 8 0c2.1 0 3.792.136 4.936.268C14.155.408 15 1.452 15 2.64V4a1 1 0 0 1 1 1zM8 4c-1.876 0-3.426.109-4.552.226A.5.5 0 0 0 3 4.723v3.554a.5.5 0 0 0 .448.497C4.574 8.891 6.124 9 8 9s3.426-.109 4.552-.226A.5.5 0 0 0 13 8.277V4.723a.5.5 0 0 0-.448-.497A44 44 0 0 0 8 4"/></svg>
+                            </div>`,
+                        iconSize: [32, 32], iconAnchor: [16, 16]
+                    });
+                    
+                    L.marker([currentPos.geometry.coordinates[1], currentPos.geometry.coordinates[0]], {icon: busIcon}).addTo(busMarkersLayer);
+                }
+            });
+        }
+
+        function setBottomSheetState(state) {
+            const sheet = document.getElementById('bottomSheet');
+            if (state === 'closed') { sheet.classList.add('closed'); sheet.classList.remove('peek'); sheet.classList.remove('open'); isSheetExpanded = false; }
+            else if (state === 'peek') { sheet.classList.remove('closed'); sheet.classList.add('peek'); sheet.classList.remove('open'); isSheetExpanded = false; }
+            else if (state === 'open') { sheet.classList.remove('closed'); sheet.classList.remove('peek'); sheet.classList.add('open'); isSheetExpanded = true; }
+        }
+        function toggleBottomSheet() {
+            isSheetExpanded ? setBottomSheetState('peek') : setBottomSheetState('open');
+        }
+        function closeBottomSheet() {
+            setBottomSheetState('closed');
+        }
+
+        function toggleSidebar(forceOpen) {
+            const sidebar = document.getElementById('sidebar');
+            if (forceOpen === true) {
+                sidebar.classList.add('open');
+            } else if (forceOpen === false) {
+                sidebar.classList.remove('open');
+            } else {
+                sidebar.classList.toggle('open');
+            }
+        }
+        document.getElementById('closeSidebarBtn').addEventListener('click', () => toggleSidebar(false));
+
+    </script>
+</body>
+</html>
