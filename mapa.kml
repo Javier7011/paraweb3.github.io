@@ -269,7 +269,7 @@
       </Placemark>
       <Placemark>
         <name>C0006</name>
-        <description><![CDATA[Nombre_parada: Casa Radical<br>ID_recorrido: L102,��L202, L204, L302, L402, L502, L602, L702]]></description>
+        <description><![CDATA[Nombre_parada: Casa Radical<br>ID_recorrido: L102, L202, L204, L302, L402, L502, L602, L702]]></description>
         <styleUrl>#icon-1899-01579B</styleUrl>
         <ExtendedData>
           <Data name="Nombre_parada">
