@@ -39,26 +39,26 @@
         <styleUrl>#icon-1899-01579B-highlight</styleUrl>
       </Pair>
     </StyleMap>
-    <Style id="line-0288D1-2000-normal">
+    <Style id="line-0288D1-1194-normal">
       <LineStyle>
         <color>ffd18802</color>
-        <width>2</width>
+        <width>1.194</width>
       </LineStyle>
     </Style>
-    <Style id="line-0288D1-2000-highlight">
+    <Style id="line-0288D1-1194-highlight">
       <LineStyle>
         <color>ffd18802</color>
-        <width>3</width>
+        <width>1.791</width>
       </LineStyle>
     </Style>
-    <StyleMap id="line-0288D1-2000">
+    <StyleMap id="line-0288D1-1194">
       <Pair>
         <key>normal</key>
-        <styleUrl>#line-0288D1-2000-normal</styleUrl>
+        <styleUrl>#line-0288D1-1194-normal</styleUrl>
       </Pair>
       <Pair>
         <key>highlight</key>
-        <styleUrl>#line-0288D1-2000-highlight</styleUrl>
+        <styleUrl>#line-0288D1-1194-highlight</styleUrl>
       </Pair>
     </StyleMap>
     <Style id="line-097138-1200-normal">
@@ -83,48 +83,26 @@
         <styleUrl>#line-097138-1200-highlight</styleUrl>
       </Pair>
     </StyleMap>
-    <Style id="line-1A237E-1000-normal">
+    <Style id="line-673AB7-1200-normal">
       <LineStyle>
-        <color>ff7e231a</color>
-        <width>1</width>
-      </LineStyle>
-    </Style>
-    <Style id="line-1A237E-1000-highlight">
-      <LineStyle>
-        <color>ff7e231a</color>
-        <width>1.5</width>
-      </LineStyle>
-    </Style>
-    <StyleMap id="line-1A237E-1000">
-      <Pair>
-        <key>normal</key>
-        <styleUrl>#line-1A237E-1000-normal</styleUrl>
-      </Pair>
-      <Pair>
-        <key>highlight</key>
-        <styleUrl>#line-1A237E-1000-highlight</styleUrl>
-      </Pair>
-    </StyleMap>
-    <Style id="line-3949AB-1200-normal">
-      <LineStyle>
-        <color>ffab4939</color>
+        <color>ffb73a67</color>
         <width>1.2</width>
       </LineStyle>
     </Style>
-    <Style id="line-3949AB-1200-highlight">
+    <Style id="line-673AB7-1200-highlight">
       <LineStyle>
-        <color>ffab4939</color>
+        <color>ffb73a67</color>
         <width>1.8</width>
       </LineStyle>
     </Style>
-    <StyleMap id="line-3949AB-1200">
+    <StyleMap id="line-673AB7-1200">
       <Pair>
         <key>normal</key>
-        <styleUrl>#line-3949AB-1200-normal</styleUrl>
+        <styleUrl>#line-673AB7-1200-normal</styleUrl>
       </Pair>
       <Pair>
         <key>highlight</key>
-        <styleUrl>#line-3949AB-1200-highlight</styleUrl>
+        <styleUrl>#line-673AB7-1200-highlight</styleUrl>
       </Pair>
     </StyleMap>
     <Style id="line-A52714-1200-normal">
@@ -149,48 +127,70 @@
         <styleUrl>#line-A52714-1200-highlight</styleUrl>
       </Pair>
     </StyleMap>
-    <Style id="line-F57C00-1200-normal">
+    <Style id="line-C2185B-1200-normal">
       <LineStyle>
-        <color>ff007cf5</color>
+        <color>ff5b18c2</color>
         <width>1.2</width>
       </LineStyle>
     </Style>
-    <Style id="line-F57C00-1200-highlight">
+    <Style id="line-C2185B-1200-highlight">
       <LineStyle>
-        <color>ff007cf5</color>
+        <color>ff5b18c2</color>
         <width>1.8</width>
       </LineStyle>
     </Style>
-    <StyleMap id="line-F57C00-1200">
+    <StyleMap id="line-C2185B-1200">
       <Pair>
         <key>normal</key>
-        <styleUrl>#line-F57C00-1200-normal</styleUrl>
+        <styleUrl>#line-C2185B-1200-normal</styleUrl>
       </Pair>
       <Pair>
         <key>highlight</key>
-        <styleUrl>#line-F57C00-1200-highlight</styleUrl>
+        <styleUrl>#line-C2185B-1200-highlight</styleUrl>
       </Pair>
     </StyleMap>
-    <Style id="line-FFD600-1200-normal">
+    <Style id="line-E65100-1194-normal">
       <LineStyle>
-        <color>ff00d6ff</color>
-        <width>1.2</width>
+        <color>ff0051e6</color>
+        <width>1.194</width>
       </LineStyle>
     </Style>
-    <Style id="line-FFD600-1200-highlight">
+    <Style id="line-E65100-1194-highlight">
       <LineStyle>
-        <color>ff00d6ff</color>
-        <width>1.8</width>
+        <color>ff0051e6</color>
+        <width>1.791</width>
       </LineStyle>
     </Style>
-    <StyleMap id="line-FFD600-1200">
+    <StyleMap id="line-E65100-1194">
       <Pair>
         <key>normal</key>
-        <styleUrl>#line-FFD600-1200-normal</styleUrl>
+        <styleUrl>#line-E65100-1194-normal</styleUrl>
       </Pair>
       <Pair>
         <key>highlight</key>
-        <styleUrl>#line-FFD600-1200-highlight</styleUrl>
+        <styleUrl>#line-E65100-1194-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="line-F9A825-1200-normal">
+      <LineStyle>
+        <color>ff25a8f9</color>
+        <width>1.2</width>
+      </LineStyle>
+    </Style>
+    <Style id="line-F9A825-1200-highlight">
+      <LineStyle>
+        <color>ff25a8f9</color>
+        <width>1.8</width>
+      </LineStyle>
+    </Style>
+    <StyleMap id="line-F9A825-1200">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#line-F9A825-1200-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#line-F9A825-1200-highlight</styleUrl>
       </Pair>
     </StyleMap>
     <Folder>
@@ -215,14 +215,14 @@
       </Placemark>
       <Placemark>
         <name>C0002</name>
-        <description><![CDATA[Nombre_parada: Cotillon HAI<br>ID_recorrido: L101, L102, L103, L105, L107, L109, L201, L202, L204, L301, L302, L303, L401, L402, L403, L501, L502, L601, L602, L701, L702]]></description>
+        <description><![CDATA[Nombre_parada: Cotillon HAI<br>ID_recorrido: L101, L102, L103, L105, L107, L109, L201, L202, L204, L301, L302, L303, L401, L402, L403, L404, L501, L502, L601, L602, L701, L702]]></description>
         <styleUrl>#icon-1899-01579B</styleUrl>
         <ExtendedData>
           <Data name="Nombre_parada">
             <value>Cotillon HAI</value>
           </Data>
           <Data name="ID_recorrido">
-            <value>L101, L102, L103, L105, L107, L109, L201, L202, L204, L301, L302, L303, L401, L402, L403, L501, L502, L601, L602, L701, L702</value>
+            <value>L101, L102, L103, L105, L107, L109, L201, L202, L204, L301, L302, L303, L401, L402, L403, L404, L501, L502, L601, L602, L701, L702</value>
           </Data>
         </ExtendedData>
         <Point>
@@ -251,14 +251,14 @@
       </Placemark>
       <Placemark>
         <name>C0004</name>
-        <description><![CDATA[Nombre_parada: Estación de Ferrocarril<br>ID_recorrido: L101, L102, L103, L105, L107, L109, L201, L202, L204, L301, L302, L303, L402, L502, L601, L602, L702]]></description>
+        <description><![CDATA[Nombre_parada: Estación de Ferrocarril<br>ID_recorrido: L101, L102, L103, L105, L107, L109, L201, L202, L204, L301, L302, L303, L402, L404, L502, L601, L602, L702]]></description>
         <styleUrl>#icon-1899-01579B</styleUrl>
         <ExtendedData>
           <Data name="Nombre_parada">
             <value>Estación de Ferrocarril</value>
           </Data>
           <Data name="ID_recorrido">
-            <value>L101, L102, L103, L105, L107, L109, L201, L202, L204, L301, L302, L303, L402, L502, L601, L602, L702</value>
+            <value>L101, L102, L103, L105, L107, L109, L201, L202, L204, L301, L302, L303, L402, L404, L502, L601, L602, L702</value>
           </Data>
         </ExtendedData>
         <Point>
@@ -269,14 +269,14 @@
       </Placemark>
       <Placemark>
         <name>C0006</name>
-        <description><![CDATA[Nombre_parada: Casa Radical<br>ID_recorrido: L102, L202, L204, L302, L402, L502, L602, L702]]></description>
+        <description><![CDATA[Nombre_parada: Casa Radical<br>ID_recorrido: L102, L202, L204, L302, L402, L404, L502, L602, L702]]></description>
         <styleUrl>#icon-1899-01579B</styleUrl>
         <ExtendedData>
           <Data name="Nombre_parada">
             <value>Casa Radical</value>
           </Data>
           <Data name="ID_recorrido">
-            <value>L102, L202, L204, L302, L402, L502, L602, L702</value>
+            <value>L102, L202, L204, L302, L402, L404, L502, L602, L702</value>
           </Data>
         </ExtendedData>
         <Point>
@@ -341,14 +341,14 @@
       </Placemark>
       <Placemark>
         <name>C0011</name>
-        <description><![CDATA[Nombre_parada: Becerra N° 3<br>ID_recorrido: L101, L102, L103, L105, L107, L109, L201, L202, L204, L302, L402, L502, L602, L702]]></description>
+        <description><![CDATA[Nombre_parada: Becerra N° 3<br>ID_recorrido: L101, L102, L103, L105, L107, L109, L201, L202, L204, L302, L402, L404, L502, L602, L702]]></description>
         <styleUrl>#icon-1899-01579B</styleUrl>
         <ExtendedData>
           <Data name="Nombre_parada">
             <value>Becerra N° 3</value>
           </Data>
           <Data name="ID_recorrido">
-            <value>L101, L102, L103, L105, L107, L109, L201, L202, L204, L302, L402, L502, L602, L702</value>
+            <value>L101, L102, L103, L105, L107, L109, L201, L202, L204, L302, L402, L404, L502, L602, L702</value>
           </Data>
         </ExtendedData>
         <Point>
@@ -521,14 +521,14 @@
       </Placemark>
       <Placemark>
         <name>C0023</name>
-        <description><![CDATA[Nombre_parada: Hospital Regional<br>ID_recorrido: L102, L202, L204, L302, L402, L602, L702]]></description>
+        <description><![CDATA[Nombre_parada: Hospital Regional<br>ID_recorrido: L102, L202, L204, L302, L402, L404, L602, L702]]></description>
         <styleUrl>#icon-1899-01579B</styleUrl>
         <ExtendedData>
           <Data name="Nombre_parada">
             <value>Hospital Regional</value>
           </Data>
           <Data name="ID_recorrido">
-            <value>L102, L202, L204, L302, L402, L602, L702</value>
+            <value>L102, L202, L204, L302, L402, L404, L602, L702</value>
           </Data>
         </ExtendedData>
         <Point>
@@ -539,14 +539,14 @@
       </Placemark>
       <Placemark>
         <name>C0012</name>
-        <description><![CDATA[Nombre_parada: Plaza Mitre <br>ID_recorrido: L102, L202, L204, L302, L402, L602, L702]]></description>
+        <description><![CDATA[Nombre_parada: Plaza Mitre <br>ID_recorrido: L102, L202, L204, L302, L402, L404, L602, L702]]></description>
         <styleUrl>#icon-1899-01579B</styleUrl>
         <ExtendedData>
           <Data name="Nombre_parada">
             <value>Plaza Mitre </value>
           </Data>
           <Data name="ID_recorrido">
-            <value>L102, L202, L204, L302, L402, L602, L702</value>
+            <value>L102, L202, L204, L302, L402, L404, L602, L702</value>
           </Data>
         </ExtendedData>
         <Point>
@@ -557,14 +557,14 @@
       </Placemark>
       <Placemark>
         <name>C0020</name>
-        <description><![CDATA[Nombre_parada: Kiosco Las Vias<br>ID_recorrido: L102, L202, L204, L302, L402, L602, L702]]></description>
+        <description><![CDATA[Nombre_parada: Kiosco Las Vias<br>ID_recorrido: L102, L202, L204, L302, L402, L404, L602, L702]]></description>
         <styleUrl>#icon-1899-01579B</styleUrl>
         <ExtendedData>
           <Data name="Nombre_parada">
             <value>Kiosco Las Vias</value>
           </Data>
           <Data name="ID_recorrido">
-            <value>L102, L202, L204, L302, L402, L602, L702</value>
+            <value>L102, L202, L204, L302, L402, L404, L602, L702</value>
           </Data>
         </ExtendedData>
         <Point>
@@ -575,14 +575,14 @@
       </Placemark>
       <Placemark>
         <name>C0087</name>
-        <description><![CDATA[Nombre_parada: Pta Linea Virrey<br>ID_recorrido: L301, L302, L303, L401, L402, L403]]></description>
+        <description><![CDATA[Nombre_parada: Pta Linea Virrey<br>ID_recorrido: L301, L302, L303, L401, L402, L403, L404]]></description>
         <styleUrl>#icon-1899-01579B</styleUrl>
         <ExtendedData>
           <Data name="Nombre_parada">
             <value>Pta Linea Virrey</value>
           </Data>
           <Data name="ID_recorrido">
-            <value>L301, L302, L303, L401, L402, L403</value>
+            <value>L301, L302, L303, L401, L402, L403, L404</value>
           </Data>
         </ExtendedData>
         <Point>
@@ -647,14 +647,14 @@
       </Placemark>
       <Placemark>
         <name>C0200</name>
-        <description><![CDATA[Nombre_parada: Escuela Liniers<br>ID_recorrido: L204, L402]]></description>
+        <description><![CDATA[Nombre_parada: Escuela Liniers<br>ID_recorrido: L204, L402, L404]]></description>
         <styleUrl>#icon-1899-01579B</styleUrl>
         <ExtendedData>
           <Data name="Nombre_parada">
             <value>Escuela Liniers</value>
           </Data>
           <Data name="ID_recorrido">
-            <value>L204, L402</value>
+            <value>L204, L402, L404</value>
           </Data>
         </ExtendedData>
         <Point>
@@ -989,14 +989,14 @@
       </Placemark>
       <Placemark>
         <name>C0035</name>
-        <description><![CDATA[Nombre_parada: Ex Terminal<br>ID_recorrido: L201, L202, L204, L302, L402, L502]]></description>
+        <description><![CDATA[Nombre_parada: Ex Terminal<br>ID_recorrido: L201, L202, L204, L302, L402, L404, L502]]></description>
         <styleUrl>#icon-1899-01579B</styleUrl>
         <ExtendedData>
           <Data name="Nombre_parada">
             <value>Ex Terminal</value>
           </Data>
           <Data name="ID_recorrido">
-            <value>L201, L202, L204, L302, L402, L502</value>
+            <value>L201, L202, L204, L302, L402, L404, L502</value>
           </Data>
         </ExtendedData>
         <Point>
@@ -1079,14 +1079,14 @@
       </Placemark>
       <Placemark>
         <name>C0209</name>
-        <description><![CDATA[Nombre_parada: Av. de Mayo y J. M. Rosas<br>ID_recorrido: L402]]></description>
+        <description><![CDATA[Nombre_parada: Av. de Mayo y J. M. Rosas<br>ID_recorrido: L402, L404]]></description>
         <styleUrl>#icon-1899-01579B</styleUrl>
         <ExtendedData>
           <Data name="Nombre_parada">
             <value>Av. de Mayo y J. M. Rosas</value>
           </Data>
           <Data name="ID_recorrido">
-            <value>L402</value>
+            <value>L402, L404</value>
           </Data>
         </ExtendedData>
         <Point>
@@ -1097,7 +1097,7 @@
       </Placemark>
       <Placemark>
         <name>C0211</name>
-        <description><![CDATA[Nombre_parada: Las Piedras<br><br>ID_recorrido: L202, L402]]></description>
+        <description><![CDATA[Nombre_parada: Las Piedras<br><br>ID_recorrido: L202, L402, L404]]></description>
         <styleUrl>#icon-1899-01579B</styleUrl>
         <ExtendedData>
           <Data name="Nombre_parada">
@@ -1105,7 +1105,7 @@
 </value>
           </Data>
           <Data name="ID_recorrido">
-            <value>L202, L402</value>
+            <value>L202, L402, L404</value>
           </Data>
         </ExtendedData>
         <Point>
@@ -1224,14 +1224,14 @@
       </Placemark>
       <Placemark>
         <name>C0021</name>
-        <description><![CDATA[Nombre_parada: Av.Libertador 740<br>ID_recorrido: L102, L202, L204, L302, L402, L702]]></description>
+        <description><![CDATA[Nombre_parada: Av.Libertador 740<br>ID_recorrido: L102, L202, L204, L302, L402, L404, L702]]></description>
         <styleUrl>#icon-1899-01579B</styleUrl>
         <ExtendedData>
           <Data name="Nombre_parada">
             <value>Av.Libertador 740</value>
           </Data>
           <Data name="ID_recorrido">
-            <value>L102, L202, L204, L302, L402, L702</value>
+            <value>L102, L202, L204, L302, L402, L404, L702</value>
           </Data>
         </ExtendedData>
         <Point>
@@ -1242,14 +1242,14 @@
       </Placemark>
       <Placemark>
         <name>C0022</name>
-        <description><![CDATA[Nombre_parada: Las Delicias<br>ID_recorrido: L102, L202, L204, L302, L402, L702]]></description>
+        <description><![CDATA[Nombre_parada: Las Delicias<br>ID_recorrido: L102, L202, L204, L302, L402, L404, L702]]></description>
         <styleUrl>#icon-1899-01579B</styleUrl>
         <ExtendedData>
           <Data name="Nombre_parada">
             <value>Las Delicias</value>
           </Data>
           <Data name="ID_recorrido">
-            <value>L102, L202, L204, L302, L402, L702</value>
+            <value>L102, L202, L204, L302, L402, L404, L702</value>
           </Data>
         </ExtendedData>
         <Point>
@@ -1314,14 +1314,14 @@
       </Placemark>
       <Placemark>
         <name>C0215</name>
-        <description><![CDATA[Nombre_parada: Av. Sarmiento 669<br>ID_recorrido: L201, L202, L204, L402, L502]]></description>
+        <description><![CDATA[Nombre_parada: Av. Sarmiento 669<br>ID_recorrido: L201, L202, L204, L402, L404, L502]]></description>
         <styleUrl>#icon-1899-01579B</styleUrl>
         <ExtendedData>
           <Data name="Nombre_parada">
             <value>Av. Sarmiento 669</value>
           </Data>
           <Data name="ID_recorrido">
-            <value>L201, L202, L204, L402, L502</value>
+            <value>L201, L202, L204, L402, L404, L502</value>
           </Data>
         </ExtendedData>
         <Point>
@@ -1512,7 +1512,7 @@
       </Placemark>
       <Placemark>
         <name>C0202</name>
-        <description><![CDATA[Nombre_parada: Av. Argentina y Viamonte<br><br>ID_recorrido: L204, L402]]></description>
+        <description><![CDATA[Nombre_parada: Av. Argentina y Viamonte<br><br>ID_recorrido: L204, L402, L404]]></description>
         <styleUrl>#icon-1899-01579B</styleUrl>
         <ExtendedData>
           <Data name="Nombre_parada">
@@ -1520,7 +1520,7 @@
 </value>
           </Data>
           <Data name="ID_recorrido">
-            <value>L204, L402</value>
+            <value>L204, L402, L404</value>
           </Data>
         </ExtendedData>
         <Point>
@@ -2017,14 +2017,14 @@
       </Placemark>
       <Placemark>
         <name>C0171</name>
-        <description><![CDATA[Nombre_parada: Bahia Blanca 590<br>ID_recorrido: L402]]></description>
+        <description><![CDATA[Nombre_parada: Bahia Blanca 590<br>ID_recorrido: L402, L404]]></description>
         <styleUrl>#icon-1899-01579B</styleUrl>
         <ExtendedData>
           <Data name="Nombre_parada">
             <value>Bahia Blanca 590</value>
           </Data>
           <Data name="ID_recorrido">
-            <value>L402</value>
+            <value>L402, L404</value>
           </Data>
         </ExtendedData>
         <Point>
@@ -2054,14 +2054,14 @@
       </Placemark>
       <Placemark>
         <name>C0173</name>
-        <description><![CDATA[Nombre_parada: Int. Peralta 790<br>ID_recorrido: L402]]></description>
+        <description><![CDATA[Nombre_parada: Int. Peralta 790<br>ID_recorrido: L402, L404]]></description>
         <styleUrl>#icon-1899-01579B</styleUrl>
         <ExtendedData>
           <Data name="Nombre_parada">
             <value>Int. Peralta 790</value>
           </Data>
           <Data name="ID_recorrido">
-            <value>L402</value>
+            <value>L402, L404</value>
           </Data>
         </ExtendedData>
         <Point>
@@ -2090,14 +2090,14 @@
       </Placemark>
       <Placemark>
         <name>C0175</name>
-        <description><![CDATA[Nombre_parada: Int. Peralta 1190<br>ID_recorrido: L402]]></description>
+        <description><![CDATA[Nombre_parada: Int. Peralta 1190<br>ID_recorrido: L402, L404]]></description>
         <styleUrl>#icon-1899-01579B</styleUrl>
         <ExtendedData>
           <Data name="Nombre_parada">
             <value>Int. Peralta 1190</value>
           </Data>
           <Data name="ID_recorrido">
-            <value>L402</value>
+            <value>L402, L404</value>
           </Data>
         </ExtendedData>
         <Point>
@@ -2234,14 +2234,14 @@
       </Placemark>
       <Placemark>
         <name>C0081</name>
-        <description><![CDATA[Nombre_parada: Aguirre Camara 310<br>ID_recorrido: L302, L402]]></description>
+        <description><![CDATA[Nombre_parada: Aguirre Camara 310<br>ID_recorrido: L302, L402, L404]]></description>
         <styleUrl>#icon-1899-01579B</styleUrl>
         <ExtendedData>
           <Data name="Nombre_parada">
             <value>Aguirre Camara 310</value>
           </Data>
           <Data name="ID_recorrido">
-            <value>L302, L402</value>
+            <value>L302, L402, L404</value>
           </Data>
         </ExtendedData>
         <Point>
@@ -2252,14 +2252,14 @@
       </Placemark>
       <Placemark>
         <name>C0080</name>
-        <description><![CDATA[Nombre_parada: Aguirre Camara 15<br>ID_recorrido: L402]]></description>
+        <description><![CDATA[Nombre_parada: Aguirre Camara 15<br>ID_recorrido: L402, L404]]></description>
         <styleUrl>#icon-1899-01579B</styleUrl>
         <ExtendedData>
           <Data name="Nombre_parada">
             <value>Aguirre Camara 15</value>
           </Data>
           <Data name="ID_recorrido">
-            <value>L402</value>
+            <value>L402, L404</value>
           </Data>
         </ExtendedData>
         <Point>
@@ -2306,14 +2306,14 @@
       </Placemark>
       <Placemark>
         <name>C0155</name>
-        <description><![CDATA[Nombre_parada: Escuela Adventista<br>ID_recorrido: L403]]></description>
+        <description><![CDATA[Nombre_parada: Escuela Adventista<br>ID_recorrido: L403, L404]]></description>
         <styleUrl>#icon-1899-01579B</styleUrl>
         <ExtendedData>
           <Data name="Nombre_parada">
             <value>Escuela Adventista</value>
           </Data>
           <Data name="ID_recorrido">
-            <value>L403</value>
+            <value>L403, L404</value>
           </Data>
         </ExtendedData>
         <Point>
@@ -2756,14 +2756,14 @@
       </Placemark>
       <Placemark>
         <name>C0156</name>
-        <description><![CDATA[Nombre_parada: M. Alfonso 590<br>ID_recorrido: ]]></description>
+        <description><![CDATA[Nombre_parada: M. Alfonso 590<br>ID_recorrido: L404]]></description>
         <styleUrl>#icon-1899-01579B</styleUrl>
         <ExtendedData>
           <Data name="Nombre_parada">
             <value>M. Alfonso 590</value>
           </Data>
           <Data name="ID_recorrido">
-            <value/>
+            <value>L404</value>
           </Data>
         </ExtendedData>
         <Point>
@@ -2774,14 +2774,14 @@
       </Placemark>
       <Placemark>
         <name>C0157</name>
-        <description><![CDATA[Nombre_parada: M. Alfonso 799<br>ID_recorrido: ]]></description>
+        <description><![CDATA[Nombre_parada: M. Alfonso 799<br>ID_recorrido: L404]]></description>
         <styleUrl>#icon-1899-01579B</styleUrl>
         <ExtendedData>
           <Data name="Nombre_parada">
             <value>M. Alfonso 799</value>
           </Data>
           <Data name="ID_recorrido">
-            <value/>
+            <value>L404</value>
           </Data>
         </ExtendedData>
         <Point>
@@ -2792,14 +2792,14 @@
       </Placemark>
       <Placemark>
         <name>C0203</name>
-        <description><![CDATA[Nombre_parada: Santa Fe y Av. Argentina<br>ID_recorrido: L204, L402]]></description>
+        <description><![CDATA[Nombre_parada: Santa Fe y Av. Argentina<br>ID_recorrido: L204, L402, L404]]></description>
         <styleUrl>#icon-1899-01579B</styleUrl>
         <ExtendedData>
           <Data name="Nombre_parada">
             <value>Santa Fe y Av. Argentina</value>
           </Data>
           <Data name="ID_recorrido">
-            <value>L204, L402</value>
+            <value>L204, L402, L404</value>
           </Data>
         </ExtendedData>
         <Point>
@@ -2810,14 +2810,14 @@
       </Placemark>
       <Placemark>
         <name>C0204</name>
-        <description><![CDATA[Nombre_parada: Cjal. Parisi 390<br>ID_recorrido: L204, L402]]></description>
+        <description><![CDATA[Nombre_parada: Cjal. Parisi 390<br>ID_recorrido: L204, L402, L404]]></description>
         <styleUrl>#icon-1899-01579B</styleUrl>
         <ExtendedData>
           <Data name="Nombre_parada">
             <value>Cjal. Parisi 390</value>
           </Data>
           <Data name="ID_recorrido">
-            <value>L204, L402</value>
+            <value>L204, L402, L404</value>
           </Data>
         </ExtendedData>
         <Point>
@@ -2828,14 +2828,14 @@
       </Placemark>
       <Placemark>
         <name>C0205</name>
-        <description><![CDATA[Nombre_parada: Cjal. Parisi 190<br>ID_recorrido: L204, L402]]></description>
+        <description><![CDATA[Nombre_parada: Cjal. Parisi 190<br>ID_recorrido: L204, L402, L404]]></description>
         <styleUrl>#icon-1899-01579B</styleUrl>
         <ExtendedData>
           <Data name="Nombre_parada">
             <value>Cjal. Parisi 190</value>
           </Data>
           <Data name="ID_recorrido">
-            <value>L204, L402</value>
+            <value>L204, L402, L404</value>
           </Data>
         </ExtendedData>
         <Point>
@@ -3242,14 +3242,14 @@
       </Placemark>
       <Placemark>
         <name>C0214</name>
-        <description><![CDATA[Nombre_parada: Armenia 200<br>ID_recorrido: L402]]></description>
+        <description><![CDATA[Nombre_parada: Armenia 200<br>ID_recorrido: L402, L404]]></description>
         <styleUrl>#icon-1899-01579B</styleUrl>
         <ExtendedData>
           <Data name="Nombre_parada">
             <value>Armenia 200</value>
           </Data>
           <Data name="ID_recorrido">
-            <value>L402</value>
+            <value>L402, L404</value>
           </Data>
         </ExtendedData>
         <Point>
@@ -3278,14 +3278,14 @@
       </Placemark>
       <Placemark>
         <name>C0210</name>
-        <description><![CDATA[Nombre_parada: El Ancla<br>ID_recorrido: L202, L402]]></description>
+        <description><![CDATA[Nombre_parada: El Ancla<br>ID_recorrido: L202, L402, L404]]></description>
         <styleUrl>#icon-1899-01579B</styleUrl>
         <ExtendedData>
           <Data name="Nombre_parada">
             <value>El Ancla</value>
           </Data>
           <Data name="ID_recorrido">
-            <value>L202, L402</value>
+            <value>L202, L402, L404</value>
           </Data>
         </ExtendedData>
         <Point>
@@ -3892,14 +3892,14 @@
       </Placemark>
       <Placemark>
         <name>C0168</name>
-        <description><![CDATA[Nombre_parada: Agustin Aguirre 1500<br>ID_recorrido: L402, L601]]></description>
+        <description><![CDATA[Nombre_parada: Agustin Aguirre 1500<br>ID_recorrido: L402, L404, L601]]></description>
         <styleUrl>#icon-1899-01579B</styleUrl>
         <ExtendedData>
           <Data name="Nombre_parada">
             <value>Agustin Aguirre 1500</value>
           </Data>
           <Data name="ID_recorrido">
-            <value>L402, L601</value>
+            <value>L402, L404, L601</value>
           </Data>
         </ExtendedData>
         <Point>
@@ -4486,14 +4486,14 @@
       </Placemark>
       <Placemark>
         <name>C0010</name>
-        <description><![CDATA[Nombre_parada: Centro<br>ID_recorrido: L101, L103, L202, L203, L204, L302, L402, L502, L602, L702]]></description>
+        <description><![CDATA[Nombre_parada: Centro<br>ID_recorrido: L101, L103, L202, L203, L204, L302, L402, L404, L502, L602, L702]]></description>
         <styleUrl>#icon-1899-01579B</styleUrl>
         <ExtendedData>
           <Data name="Nombre_parada">
             <value>Centro</value>
           </Data>
           <Data name="ID_recorrido">
-            <value>L101, L103, L202, L203, L204, L302, L402, L502, L602, L702</value>
+            <value>L101, L103, L202, L203, L204, L302, L402, L404, L502, L602, L702</value>
           </Data>
         </ExtendedData>
         <Point>
@@ -4504,14 +4504,14 @@
       </Placemark>
       <Placemark>
         <name>C0013</name>
-        <description><![CDATA[Nombre_parada: Inst. Misericordia<br>ID_recorrido: L201, L202, L204, L302, L402, L502, L602, L702]]></description>
+        <description><![CDATA[Nombre_parada: Inst. Misericordia<br>ID_recorrido: L201, L202, L204, L302, L402, L404, L502, L602, L702]]></description>
         <styleUrl>#icon-1899-01579B</styleUrl>
         <ExtendedData>
           <Data name="Nombre_parada">
             <value>Inst. Misericordia</value>
           </Data>
           <Data name="ID_recorrido">
-            <value>L201, L202, L204, L302, L402, L502, L602, L702</value>
+            <value>L201, L202, L204, L302, L402, L404, L502, L602, L702</value>
           </Data>
         </ExtendedData>
         <Point>
@@ -4918,14 +4918,14 @@
       </Placemark>
       <Placemark>
         <name>C0033</name>
-        <description><![CDATA[Nombre_parada: Arzobispo Castellanos 50<br>ID_recorrido: L201, L202, L204, L302, L402, L502, L602, L702]]></description>
+        <description><![CDATA[Nombre_parada: Arzobispo Castellanos 50<br>ID_recorrido: L201, L202, L204, L302, L402, L404, L502, L602, L702]]></description>
         <styleUrl>#icon-1899-01579B</styleUrl>
         <ExtendedData>
           <Data name="Nombre_parada">
             <value>Arzobispo Castellanos 50</value>
           </Data>
           <Data name="ID_recorrido">
-            <value>L201, L202, L204, L302, L402, L502, L602, L702</value>
+            <value>L201, L202, L204, L302, L402, L404, L502, L602, L702</value>
           </Data>
         </ExtendedData>
         <Point>
@@ -5202,7 +5202,7 @@
       </Placemark>
       <Placemark>
         <name>C0158</name>
-        <description><![CDATA[Nombre_parada: Tiro Federal<br><br>ID_recorrido: ]]></description>
+        <description><![CDATA[Nombre_parada: Tiro Federal<br><br>ID_recorrido: L404]]></description>
         <styleUrl>#icon-1899-01579B</styleUrl>
         <ExtendedData>
           <Data name="Nombre_parada">
@@ -5210,7 +5210,7 @@
 </value>
           </Data>
           <Data name="ID_recorrido">
-            <value/>
+            <value>L404</value>
           </Data>
         </ExtendedData>
         <Point>
@@ -5221,15 +5221,15 @@
       </Placemark>
       <Placemark>
         <name>C0159</name>
-        <description><![CDATA[Nombre_parada: Country La Hornilla<br><br>ID_recorrido: ]]></description>
+        <description><![CDATA[Nombre_parada: La Hornilla<br><br>ID_recorrido: L404]]></description>
         <styleUrl>#icon-1899-01579B</styleUrl>
         <ExtendedData>
           <Data name="Nombre_parada">
-            <value>Country La Hornilla
+            <value>La Hornilla
 </value>
           </Data>
           <Data name="ID_recorrido">
-            <value/>
+            <value>L404</value>
           </Data>
         </ExtendedData>
         <Point>
@@ -5420,14 +5420,14 @@
       </Placemark>
       <Placemark>
         <name>C0014</name>
-        <description><![CDATA[Nombre_parada: Becerra Central 2<br>ID_recorrido: L101, L103, L107, L201, L203, L204, L301, L303, L402, L602, L702]]></description>
+        <description><![CDATA[Nombre_parada: Becerra Central 2<br>ID_recorrido: L101, L103, L107, L201, L203, L204, L301, L303, L402, L404, L602, L702]]></description>
         <styleUrl>#icon-1899-01579B</styleUrl>
         <ExtendedData>
           <Data name="Nombre_parada">
             <value>Becerra Central 2</value>
           </Data>
           <Data name="ID_recorrido">
-            <value>L101, L103, L107, L201, L203, L204, L301, L303, L402, L602, L702</value>
+            <value>L101, L103, L107, L201, L203, L204, L301, L303, L402, L404, L602, L702</value>
           </Data>
         </ExtendedData>
         <Point>
@@ -5474,14 +5474,14 @@
       </Placemark>
       <Placemark>
         <name>C0297</name>
-        <description><![CDATA[Nombre_parada: Dispensario 11<br>ID_recorrido: L402]]></description>
+        <description><![CDATA[Nombre_parada: Dispensario 11<br>ID_recorrido: L402, L404]]></description>
         <styleUrl>#icon-1899-01579B</styleUrl>
         <ExtendedData>
           <Data name="Nombre_parada">
             <value>Dispensario 11</value>
           </Data>
           <Data name="ID_recorrido">
-            <value>L402</value>
+            <value>L402, L404</value>
           </Data>
         </ExtendedData>
         <Point>
@@ -5730,7 +5730,7 @@
       <Placemark>
         <name>L101</name>
         <description><![CDATA[ID_linea: L1<br>description: ]]></description>
-        <styleUrl>#line-F57C00-1200</styleUrl>
+        <styleUrl>#line-E65100-1194</styleUrl>
         <ExtendedData>
           <Data name="ID_linea">
             <value>L1</value>
@@ -5916,7 +5916,7 @@
       <Placemark>
         <name>L102</name>
         <description><![CDATA[ID_linea: L1<br>description: ]]></description>
-        <styleUrl>#line-F57C00-1200</styleUrl>
+        <styleUrl>#line-E65100-1194</styleUrl>
         <ExtendedData>
           <Data name="ID_linea">
             <value>L1</value>
@@ -6098,7 +6098,7 @@
       <Placemark>
         <name>L103</name>
         <description><![CDATA[ID_linea: L1<br>description: ]]></description>
-        <styleUrl>#line-F57C00-1200</styleUrl>
+        <styleUrl>#line-E65100-1194</styleUrl>
         <ExtendedData>
           <Data name="ID_linea">
             <value>L1</value>
@@ -6258,7 +6258,7 @@
       <Placemark>
         <name>L104</name>
         <description><![CDATA[ID_linea: L1<br>description: ]]></description>
-        <styleUrl>#line-F57C00-1200</styleUrl>
+        <styleUrl>#line-E65100-1194</styleUrl>
         <ExtendedData>
           <Data name="ID_linea">
             <value>L1</value>
@@ -6348,7 +6348,7 @@
       <Placemark>
         <name>L105</name>
         <description><![CDATA[ID_linea: L1<br>description: ]]></description>
-        <styleUrl>#line-F57C00-1200</styleUrl>
+        <styleUrl>#line-E65100-1194</styleUrl>
         <ExtendedData>
           <Data name="ID_linea">
             <value>L1</value>
@@ -6426,7 +6426,7 @@
       <Placemark>
         <name>L106</name>
         <description><![CDATA[ID_linea: L1<br>description: ]]></description>
-        <styleUrl>#line-F57C00-1200</styleUrl>
+        <styleUrl>#line-E65100-1194</styleUrl>
         <ExtendedData>
           <Data name="ID_linea">
             <value>L1</value>
@@ -6516,7 +6516,7 @@
       <Placemark>
         <name>L107</name>
         <description><![CDATA[ID_linea: L1<br>description: ]]></description>
-        <styleUrl>#line-F57C00-1200</styleUrl>
+        <styleUrl>#line-E65100-1194</styleUrl>
         <ExtendedData>
           <Data name="ID_linea">
             <value>L1</value>
@@ -6686,7 +6686,7 @@
       <Placemark>
         <name>L109</name>
         <description><![CDATA[ID_linea: L1<br>description: ]]></description>
-        <styleUrl>#line-F57C00-1200</styleUrl>
+        <styleUrl>#line-E65100-1194</styleUrl>
         <ExtendedData>
           <Data name="ID_linea">
             <value>L1</value>
@@ -8465,7 +8465,7 @@
       <Placemark>
         <name>L401</name>
         <description><![CDATA[ID_linea: L4<br>description: ]]></description>
-        <styleUrl>#line-0288D1-2000</styleUrl>
+        <styleUrl>#line-0288D1-1194</styleUrl>
         <ExtendedData>
           <Data name="ID_linea">
             <value>L4</value>
@@ -8652,7 +8652,7 @@
       <Placemark>
         <name>L402</name>
         <description><![CDATA[ID_linea: L4<br>description: ]]></description>
-        <styleUrl>#line-0288D1-2000</styleUrl>
+        <styleUrl>#line-0288D1-1194</styleUrl>
         <ExtendedData>
           <Data name="ID_linea">
             <value>L4</value>
@@ -8911,7 +8911,7 @@
       <Placemark>
         <name>L403</name>
         <description><![CDATA[ID_linea: L4<br>description: ]]></description>
-        <styleUrl>#line-0288D1-2000</styleUrl>
+        <styleUrl>#line-0288D1-1194</styleUrl>
         <ExtendedData>
           <Data name="ID_linea">
             <value>L4</value>
@@ -9100,9 +9100,259 @@
         </LineString>
       </Placemark>
       <Placemark>
+        <name>L404</name>
+        <description><![CDATA[ID_linea: L4<br>description: ]]></description>
+        <styleUrl>#line-0288D1-1194</styleUrl>
+        <ExtendedData>
+          <Data name="ID_linea">
+            <value>L4</value>
+          </Data>
+          <Data name="description">
+            <value/>
+          </Data>
+        </ExtendedData>
+        <LineString>
+          <tessellate>1</tessellate>
+          <coordinates>
+            -64.451355,-31.656572,0
+            -64.4526676,-31.6565599,0
+            -64.4534524,-31.6565346,0
+            -64.4540798,-31.6565313,0
+            -64.4545452,-31.6565096,0
+            -64.4554878,-31.6564877,0
+            -64.4559748,-31.6564822,0
+            -64.4560244,-31.6565256,0
+            -64.4561064,-31.6579178,0
+            -64.4561465,-31.6582208,0
+            -64.4561612,-31.6583418,0
+            -64.4560593,-31.6584126,0
+            -64.4544792,-31.6584475,0
+            -64.4537928,-31.6584594,0
+            -64.4533368,-31.6584742,0
+            -64.4530042,-31.6585096,0
+            -64.4521258,-31.6586706,0
+            -64.4516497,-31.6587676,0
+            -64.4514459,-31.6588498,0
+            -64.4505782,-31.6594297,0
+            -64.4504213,-31.6595119,0
+            -64.4503207,-31.6595336,0
+            -64.4496193,-31.6595895,0
+            -64.4496032,-31.6596432,0
+            -64.450293,-31.660512,0
+            -64.450797,-31.661222,0
+            -64.451652,-31.662609,0
+            -64.451706,-31.662693,0
+            -64.451693,-31.662738,0
+            -64.450474,-31.663409,0
+            -64.450411,-31.663444,0
+            -64.450352,-31.663439,0
+            -64.449635,-31.662518,0
+            -64.448844,-31.661442,0
+            -64.44795,-31.660276,0
+            -64.447922,-31.66025,0
+            -64.447871,-31.660241,0
+            -64.446932,-31.660629,0
+            -64.446672,-31.660741,0
+            -64.446577,-31.660773,0
+            -64.446047,-31.660951,0
+            -64.445846,-31.661017,0
+            -64.445491,-31.661108,0
+            -64.445392,-31.661115,0
+            -64.44528,-31.661092,0
+            -64.445175,-31.661067,0
+            -64.444971,-31.661058,0
+            -64.444802,-31.661085,0
+            -64.443807,-31.66151,0
+            -64.443608,-31.661624,0
+            -64.443265,-31.661915,0
+            -64.443233,-31.661951,0
+            -64.443155,-31.661999,0
+            -64.442474,-31.662252,0
+            -64.441605,-31.662615,0
+            -64.4415,-31.662702,0
+            -64.441481,-31.66274,0
+            -64.441455,-31.662804,0
+            -64.441422,-31.662846,0
+            -64.441374,-31.662864,0
+            -64.441321,-31.662862,0
+            -64.441286,-31.662839,0
+            -64.441259,-31.662795,0
+            -64.441256,-31.66274,0
+            -64.441286,-31.662695,0
+            -64.441347,-31.662658,0
+            -64.441422,-31.66259,0
+            -64.44161,-31.662358,0
+            -64.441734,-31.662174,0
+            -64.441975,-31.661784,0
+            -64.442305,-31.661136,0
+            -64.442576,-31.66046,0
+            -64.442844,-31.659959,0
+            -64.443118,-31.659325,0
+            -64.443185,-31.659124,0
+            -64.443367,-31.658437,0
+            -64.443426,-31.658296,0
+            -64.443555,-31.658115,0
+            -64.443692,-31.658024,0
+            -64.443855,-31.657928,0
+            -64.444083,-31.657729,0
+            -64.44418,-31.657611,0
+            -64.444266,-31.657366,0
+            -64.444322,-31.65722,0
+            -64.4443,-31.657147,0
+            -64.444064,-31.65686,0
+            -64.443901,-31.656588,0
+            -64.443753,-31.656259,0
+            -64.443535,-31.65575,0
+            -64.44322,-31.654976,0
+            -64.443002,-31.654426,0
+            -64.442825,-31.653914,0
+            -64.442807,-31.653906,0
+            -64.442788,-31.653911,0
+            -64.442311,-31.65434,0
+            -64.441975,-31.654677,0
+            -64.441836,-31.654766,0
+            -64.441331,-31.654914,0
+            -64.440521,-31.655138,0
+            -64.439373,-31.655435,0
+            -64.439105,-31.655485,0
+            -64.438346,-31.655729,0
+            -64.437729,-31.655912,0
+            -64.436973,-31.656136,0
+            -64.436949,-31.656163,0
+            -64.436957,-31.6562,0
+            -64.437016,-31.656405,0
+            -64.437023,-31.65656,0
+            -64.437005,-31.656669,0
+            -64.436941,-31.65675,0
+            -64.436724,-31.656859,0
+            -64.436686,-31.65691,0
+            -64.43667,-31.656967,0
+            -64.436689,-31.657376,0
+            -64.4366886,-31.657753,0
+            -64.4366675,-31.6579667,0
+            -64.4366173,-31.6584134,0
+            -64.4366071,-31.659001,0
+            -64.435962,-31.6589808,0
+            -64.435677,-31.659057,0
+            -64.434389,-31.659564,0
+            -64.433552,-31.659883,0
+            -64.433462,-31.659851,0
+            -64.43343,-31.659725,0
+            -64.433325,-31.659262,0
+            -64.433191,-31.65866,0
+            -64.433145,-31.658358,0
+            -64.433092,-31.657983,0
+            -64.4330916,-31.6579378,0
+            -64.433073,-31.657862,0
+            -64.433034,-31.657614,0
+            -64.432783,-31.656583,0
+            -64.432543,-31.65527,0
+            -64.432491,-31.654869,0
+            -64.432465,-31.65478,0
+            -64.4324406,-31.6547573,0
+            -64.43241,-31.654749,0
+            -64.430823,-31.654905,0
+            -64.429927,-31.654994,0
+            -64.429816,-31.654998,0
+            -64.429677,-31.655019,0
+            -64.42854,-31.655128,0
+            -64.427456,-31.655226,0
+            -64.427419,-31.655251,0
+            -64.427401,-31.655285,0
+            -64.427392,-31.655328,0
+            -64.427395,-31.655376,0
+            -64.427459,-31.65587,0
+            -64.427507,-31.656123,0
+            -64.427501,-31.656246,0
+            -64.427653,-31.657377,0
+            -64.427771,-31.658113,0
+            -64.427776,-31.658217,0
+            -64.427791,-31.658268,0
+            -64.427855,-31.6583588,0
+            -64.428716,-31.659797,0
+            -64.4291,-31.660379,0
+            -64.429104,-31.660409,0
+            -64.429093,-31.66043,0
+            -64.429062,-31.660452,0
+            -64.428519,-31.660715,0
+            -64.428218,-31.660852,0
+            -64.428174,-31.660858,0
+            -64.428136,-31.660851,0
+            -64.428109,-31.66083,0
+            -64.427823,-31.660341,0
+            -64.427551,-31.659908,0
+            -64.427503,-31.659807,0
+            -64.42746,-31.659786,0
+            -64.427422,-31.659775,0
+            -64.427401,-31.659753,0
+            -64.427389,-31.659725,0
+            -64.427357,-31.659508,0
+            -64.42735,-31.659381,0
+            -64.427343,-31.658654,0
+            -64.42732,-31.658584,0
+            -64.427272,-31.658527,0
+            -64.427189,-31.65847,0
+            -64.427108,-31.658445,0
+            -64.427011,-31.658455,0
+            -64.426831,-31.658507,0
+            -64.4266811,-31.6585683,0
+            -64.4264893,-31.6586118,0
+            -64.4263693,-31.6586381,0
+            -64.4261488,-31.6586511,0
+            -64.4258384,-31.6586513,0
+            -64.424602,-31.658629,0
+            -64.42413,-31.658659,0
+            -64.422974,-31.658644,0
+            -64.420635,-31.658595,0
+            -64.420362,-31.658599,0
+            -64.418378,-31.65856,0
+            -64.416787,-31.658539,0
+            -64.416129,-31.658539,0
+            -64.414655,-31.658509,0
+            -64.413829,-31.658496,0
+            -64.413545,-31.658483,0
+            -64.413512,-31.658467,0
+            -64.4135,-31.658442,0
+            -64.413503,-31.658232,0
+            -64.413478,-31.657483,0
+            -64.413426,-31.656514,0
+            -64.413417,-31.655818,0
+            -64.413425,-31.654847,0
+            -64.413428,-31.654339,0
+            -64.413451,-31.654313,0
+            -64.414501,-31.65434,0
+            -64.414845,-31.654346,0
+            -64.415796,-31.654359,0
+            -64.415823,-31.654332,0
+            -64.415812,-31.653326,0
+            -64.415919,-31.653286,0
+            -64.416748,-31.653321,0
+            -64.417027,-31.653309,0
+            -64.417885,-31.65332,0
+            -64.418014,-31.653307,0
+            -64.418047,-31.653278,0
+            -64.418059,-31.6532,0
+            -64.418077,-31.652685,0
+            -64.418114,-31.65142,0
+            -64.418115,-31.6509,0
+            -64.418106,-31.650609,0
+            -64.418076,-31.650194,0
+            -64.418035,-31.649686,0
+            -64.418057,-31.648732,0
+            -64.418076,-31.647912,0
+            -64.418078,-31.647186,0
+            -64.418092,-31.646339,0
+            -64.418087,-31.645654,0
+            -64.418078,-31.6456114,0
+            -64.4180543,-31.6455906,0
+            -64.4158884,-31.6456006,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
         <name>L501</name>
         <description><![CDATA[ID_linea: L5<br>description: ]]></description>
-        <styleUrl>#line-FFD600-1200</styleUrl>
+        <styleUrl>#line-F9A825-1200</styleUrl>
         <ExtendedData>
           <Data name="ID_linea">
             <value>L5</value>
@@ -9360,7 +9610,7 @@
       <Placemark>
         <name>L502</name>
         <description><![CDATA[ID_linea: L5<br>description: ]]></description>
-        <styleUrl>#line-FFD600-1200</styleUrl>
+        <styleUrl>#line-F9A825-1200</styleUrl>
         <ExtendedData>
           <Data name="ID_linea">
             <value>L5</value>
@@ -9612,7 +9862,7 @@
       <Placemark>
         <name>L601</name>
         <description><![CDATA[ID_linea: L6<br>description: ]]></description>
-        <styleUrl>#line-1A237E-1000</styleUrl>
+        <styleUrl>#line-C2185B-1200</styleUrl>
         <ExtendedData>
           <Data name="ID_linea">
             <value>L6</value>
@@ -9816,7 +10066,7 @@
       <Placemark>
         <name>L602</name>
         <description><![CDATA[ID_linea: L6<br>description: ]]></description>
-        <styleUrl>#line-1A237E-1000</styleUrl>
+        <styleUrl>#line-C2185B-1200</styleUrl>
         <ExtendedData>
           <Data name="ID_linea">
             <value>L6</value>
@@ -10098,7 +10348,7 @@
       <Placemark>
         <name>L701</name>
         <description><![CDATA[ID_linea: L7<br>description: ]]></description>
-        <styleUrl>#line-3949AB-1200</styleUrl>
+        <styleUrl>#line-673AB7-1200</styleUrl>
         <ExtendedData>
           <Data name="ID_linea">
             <value>L7</value>
@@ -10362,7 +10612,7 @@
       <Placemark>
         <name>L702</name>
         <description><![CDATA[ID_linea: L7<br>description: ]]></description>
-        <styleUrl>#line-3949AB-1200</styleUrl>
+        <styleUrl>#line-673AB7-1200</styleUrl>
         <ExtendedData>
           <Data name="ID_linea">
             <value>L7</value>
@@ -10682,9 +10932,6 @@
           </coordinates>
         </LineString>
       </Placemark>
-    </Folder>
-    <Folder>
-      <name>export</name>
     </Folder>
   </Document>
 </kml>
