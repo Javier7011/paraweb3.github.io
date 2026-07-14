@@ -2126,19 +2126,19 @@
       </Placemark>
       <Placemark>
         <name>C0177</name>
-        <description><![CDATA[Nombre_parada: Pta Linea Virrey<br>ID_recorrido: ]]></description>
+        <description><![CDATA[Nombre_parada: M. Moreno 690<br>ID_recorrido: L201, ]]></description>
         <styleUrl>#icon-1899-01579B</styleUrl>
         <ExtendedData>
           <Data name="Nombre_parada">
-            <value>Pta Linea Virrey</value>
+            <value>M. Moreno 690</value>
           </Data>
           <Data name="ID_recorrido">
-            <value/>
+            <value>L201, </value>
           </Data>
         </ExtendedData>
         <Point>
           <coordinates>
-            -64.416137,-31.6457124,0
+            -64.4285899,-31.6655559,0
           </coordinates>
         </Point>
       </Placemark>
@@ -3604,14 +3604,14 @@
       </Placemark>
       <Placemark>
         <name>C0071</name>
-        <description><![CDATA[Nombre_parada: Cjal. Alonso 660<br>ID_recorrido: L101, L103, L105, L107, L109, L201, L502]]></description>
+        <description><![CDATA[Nombre_parada: Cjal. Alonso 660<br>ID_recorrido: L101, L103, L105, L107, L109, L502]]></description>
         <styleUrl>#icon-1899-01579B</styleUrl>
         <ExtendedData>
           <Data name="Nombre_parada">
             <value>Cjal. Alonso 660</value>
           </Data>
           <Data name="ID_recorrido">
-            <value>L101, L103, L105, L107, L109, L201, L502</value>
+            <value>L101, L103, L105, L107, L109, L502</value>
           </Data>
         </ExtendedData>
         <Point>
@@ -3622,14 +3622,14 @@
       </Placemark>
       <Placemark>
         <name>C0070</name>
-        <description><![CDATA[Nombre_parada: Cjal. Alonso 490<br>ID_recorrido: L101, L103, L105, L107, L109, L201]]></description>
+        <description><![CDATA[Nombre_parada: Cjal. Alonso 490<br>ID_recorrido: L101, L103, L105, L107, L109]]></description>
         <styleUrl>#icon-1899-01579B</styleUrl>
         <ExtendedData>
           <Data name="Nombre_parada">
             <value>Cjal. Alonso 490</value>
           </Data>
           <Data name="ID_recorrido">
-            <value>L101, L103, L105, L107, L109, L201</value>
+            <value>L101, L103, L105, L107, L109</value>
           </Data>
         </ExtendedData>
         <Point>
@@ -5126,20 +5126,20 @@
       </Placemark>
       <Placemark>
         <name>C0236</name>
-        <description><![CDATA[Nombre_parada: San Lucas y Cervantes<br><br>ID_recorrido: ]]></description>
+        <description><![CDATA[Nombre_parada: Las Palomas<br><br>ID_recorrido: L201, L204]]></description>
         <styleUrl>#icon-1899-01579B</styleUrl>
         <ExtendedData>
           <Data name="Nombre_parada">
-            <value>San Lucas y Cervantes
+            <value>Las Palomas
 </value>
           </Data>
           <Data name="ID_recorrido">
-            <value/>
+            <value>L201, L204</value>
           </Data>
         </ExtendedData>
         <Point>
           <coordinates>
-            -64.4366197,-31.671658,0
+            -64.4344967,-31.6726076,0
           </coordinates>
         </Point>
       </Placemark>
@@ -5294,14 +5294,14 @@
       </Placemark>
       <Placemark>
         <name>C0075</name>
-        <description><![CDATA[Nombre_parada: Ruta S523<br>ID_recorrido: L101, L103, L105, L107, L109, L201, L204]]></description>
+        <description><![CDATA[Nombre_parada: Ruta S523<br>ID_recorrido: L101, L103, L105, L107, L109]]></description>
         <styleUrl>#icon-1899-01579B</styleUrl>
         <ExtendedData>
           <Data name="Nombre_parada">
             <value>Ruta S523</value>
           </Data>
           <Data name="ID_recorrido">
-            <value>L101, L103, L105, L107, L109, L201, L204</value>
+            <value>L101, L103, L105, L107, L109</value>
           </Data>
         </ExtendedData>
         <Point>
@@ -6922,15 +6922,13 @@
             -64.4298128,-31.6615897,0
             -64.4302767,-31.6623645,0
             -64.4309513,-31.6634172,0
-            -64.430946,-31.6634486,0
-            -64.4309071,-31.6634674,0
-            -64.4300136,-31.6638321,0
-            -64.4288559,-31.664315,0
-            -64.4283627,-31.66452,0
-            -64.4282812,-31.6645541,0
-            -64.4282638,-31.6645855,0
-            -64.4282685,-31.6646283,0
-            -64.4284475,-31.6655654,0
+            -64.4314304,-31.6642886,0
+            -64.4314319,-31.6643367,0
+            -64.4313651,-31.6643737,0
+            -64.4303541,-31.6648001,0
+            -64.4294071,-31.6652336,0
+            -64.4285899,-31.6655559,0
+            -64.4285073,-31.6655931,0
             -64.428479,-31.6656567,0
             -64.4285367,-31.6657755,0
             -64.4288451,-31.666252,0
@@ -6958,14 +6956,13 @@
             -64.4332295,-31.6718061,0
             -64.4332597,-31.6718415,0
             -64.4333261,-31.671854,0
-            -64.4342649,-31.6717193,0
-            -64.4343004,-31.6717359,0
-            -64.4343158,-31.671773,0
-            -64.4343393,-31.6722141,0
-            -64.4343494,-31.6740175,0
-            -64.4343493,-31.6753311,0
-            -64.4343786,-31.6754037,0
-            -64.4344638,-31.6754176,0
+            -64.4344272,-31.6716993,0
+            -64.4344989,-31.6717439,0
+            -64.4344967,-31.6726076,0
+            -64.4344699,-31.6737839,0
+            -64.4345102,-31.6753437,0
+            -64.4345221,-31.6754071,0
+            -64.4345912,-31.6754222,0
             -64.4354475,-31.6754253,0
           </coordinates>
         </LineString>
@@ -7431,7 +7428,7 @@
         <LineString>
           <tessellate>1</tessellate>
           <coordinates>
-            -64.4305739,-31.66912,0
+            -64.4305729,-31.6691194,0
             -64.4306789,-31.6692872,0
             -64.4307916,-31.6693608,0
             -64.4309405,-31.6694145,0
@@ -7453,14 +7450,14 @@
             -64.4332592,-31.6718314,0
             -64.4332934,-31.6718445,0
             -64.4333558,-31.6718399,0
-            -64.4342389,-31.671719,0
-            -64.4342765,-31.6717287,0
-            -64.434308,-31.6717543,0
-            -64.4343174,-31.6717989,0
-            -64.4343403,-31.6722147,0
-            -64.4343556,-31.6753781,0
-            -64.4343951,-31.6754175,0
-            -64.4344743,-31.6754226,0
+            -64.4344085,-31.6717002,0
+            -64.4344622,-31.6717127,0
+            -64.4344964,-31.6717549,0
+            -64.4344967,-31.6726076,0
+            -64.4344755,-31.6737409,0
+            -64.4345078,-31.6753787,0
+            -64.4345339,-31.6754129,0
+            -64.4345735,-31.6754237,0
             -64.4354485,-31.6754259,0
             -64.4355002,-31.6754266,0
             -64.4355398,-31.675442,0
