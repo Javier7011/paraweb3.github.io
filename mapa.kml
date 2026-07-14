@@ -582,7 +582,7 @@
             <value>Pta Linea Virrey</value>
           </Data>
           <Data name="ID_recorrido">
-            <value>L301, L302, L303,��L401, L402, L403, L404</value>
+            <value>L301, L302, L303, L401, L402, L403, L404</value>
           </Data>
         </ExtendedData>
         <Point>
@@ -672,7 +672,7 @@
             <value>Terminal 2</value>
           </Data>
           <Data name="ID_recorrido">
-            <value>L201, L202, L203, L204, L501</value>
+            <value>L201, L202,��L203, L204, L501</value>
           </Data>
         </ExtendedData>
         <Point>
