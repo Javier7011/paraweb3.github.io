@@ -1675,11 +1675,11 @@
       </Placemark>
       <Placemark>
         <name>C0074</name>
-        <description><![CDATA[Nombre_parada: 25 de mayo 1280<br>ID_recorrido: L101, L103, L105, L107, L109, L201, L204]]></description>
+        <description><![CDATA[Nombre_parada: Dispensario 2<br>ID_recorrido: L101, L103, L105, L107, L109, L201, L204]]></description>
         <styleUrl>#icon-1899-01579B</styleUrl>
         <ExtendedData>
           <Data name="Nombre_parada">
-            <value>25 de mayo 1280</value>
+            <value>Dispensario 2</value>
           </Data>
           <Data name="ID_recorrido">
             <value>L101, L103, L105, L107, L109, L201, L204</value>
