@@ -575,7 +575,7 @@
       </Placemark>
       <Placemark>
         <name>C0087</name>
-        <description><![CDATA[Nombre_parada: Pta Linea Virrey<br>ID_recorrido: L301, L302, L303, L401,��L402, L403, L404]]></description>
+        <description><![CDATA[Nombre_parada: Pta Linea Virrey<br>ID_recorrido: L301, L302, L303, L401, L402, L403, L404]]></description>
         <styleUrl>#icon-1899-01579B</styleUrl>
         <ExtendedData>
           <Data name="Nombre_parada">
