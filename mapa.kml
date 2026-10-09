@@ -4144,7 +4144,7 @@
       </Placemark>
       <Placemark>
         <name>C0255</name>
-        <description><![CDATA[Nombre_parada: Celestina Aguero 700<br>ID_recorrido: L501,��L601]]></description>
+        <description><![CDATA[Nombre_parada: Celestina Aguero 700<br>ID_recorrido: L501, L601]]></description>
         <styleUrl>#icon-1899-01579B</styleUrl>
         <ExtendedData>
           <Data name="Nombre_parada">
