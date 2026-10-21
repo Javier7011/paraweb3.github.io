@@ -539,7 +539,7 @@
       </Placemark>
       <Placemark>
         <name>C0012</name>
-        <description><![CDATA[Nombre_parada: Plaza Mitre <br>ID_recorrido: L102, L202, L204, L302, L402, L404, L602, L702]]></description>
+        <description><![CDATA[Nombre_parada: Plaza Mitre <br>ID_recorrido: L102,��L202, L204, L302, L402, L404, L602, L702]]></description>
         <styleUrl>#icon-1899-01579B</styleUrl>
         <ExtendedData>
           <Data name="Nombre_parada">
