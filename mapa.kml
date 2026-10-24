@@ -4486,7 +4486,7 @@
       </Placemark>
       <Placemark>
         <name>C0010</name>
-        <description><![CDATA[Nombre_parada: Centro<br>ID_recorrido: L101, L103,��L202, L203, L204, L302, L402, L404, L502, L602, L702]]></description>
+        <description><![CDATA[Nombre_parada: Centro<br>ID_recorrido: L101, L103, L202, L203, L204, L302, L402, L404, L502, L602, L702]]></description>
         <styleUrl>#icon-1899-01579B</styleUrl>
         <ExtendedData>
           <Data name="Nombre_parada">
