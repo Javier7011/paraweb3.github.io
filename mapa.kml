@@ -5420,7 +5420,7 @@
       </Placemark>
       <Placemark>
         <name>C0014</name>
-        <description><![CDATA[Nombre_parada: Becerra Central 2<br>ID_recorrido: L101, L103, L107,��L201, L203, L204, L301, L303, L402, L404, L602, L702]]></description>
+        <description><![CDATA[Nombre_parada: Becerra Central 2<br>ID_recorrido: L101, L103, L107, L201, L203, L204, L301, L303, L402, L404, L602, L702]]></description>
         <styleUrl>#icon-1899-01579B</styleUrl>
         <ExtendedData>
           <Data name="Nombre_parada">
